@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 mt-5 ">
+            <h2>постуу тузотуу</h2>
+              <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+    <button class="btn btn-info ml-2" type="submit">сактоо</button>
+                   <a  href="{% url 'okuu:learn_view' %}">  артка кайтуу</a>
+    </form>
+        </div>
+        <div class="col"></div>
+    </div>
+  </div>
+{% endblock content %}

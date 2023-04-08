@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 mt-5 ">
+            <div class="row">
+               <h2 class="col-10">New Post</h2>
+            <button type="button" class="btn btn-info col-2" data-bs-toggle="modal" data-bs-target="#natureadd">
+                      <i class="bi bi-question-lg"></i>
+            </button>
+           </div>
+             <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+        <button class="btn btn-success ml-2" type="submit">Сактоо</button>
+                  <a  href="{% url 'nature:nature' %}">  артка кайтуу</a>
+    </form>
+        </div>
+        <div class="col"></div>
+    </div>
+  </div>
+{% endblock content %}

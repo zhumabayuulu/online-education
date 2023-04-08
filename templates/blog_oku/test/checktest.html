@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="content mt-5">
+        <center>
+        {% if checktest.user_passed %}
+            <h1>you have successfully passed the test</h1>
+        {%else%}
+            <h1>You have to solve {{checktest.test.pass_percentage}}% of test al least</h1>
+        {%endif%}
+            <h2 class="mb-4">you finded{{chectest.percentage}} of all questions</h2>
+        </center>
+     <div class="card p-3">
+            {% for q in checktest.checkquestion_set.all%}
+            <h5>{{forloop.counter}}. {{q.question}}</h5>
+            {% if q.is_true %}
+            <div class="answer p-2">
+                <p>Note: {{q.given_answer}} was marked</p>
+                <p>A. {{q.question.a}}</p>
+                <p>B. {{q.question.a}}</p>
+                <p>C. {{q.question.a}}</p>
+                <p>D. {{q.question.a}}</p>
+            </div>
+            {% else %}
+            <div style="background-color: rgba(255,129,0.39);"class="'answers p-2">
+                 <p>Note: {{q.given_answer}} was marked</p>
+                <p>A. {{q.question.a}}</p>
+                <p>B. {{q.question.a}}</p>
+                <p>C. {{q.question.a}}</p>
+                <p>D. {{q.question.a}}</p>
+            </div>
+                {%endif%}
+                {%endfor%}
+                <a class="btn btn-secondary mt-2" href="{% url 'okuu:list_test'%}">back home</a>
+
+        </div>
+</div>
+{% endblock content%}

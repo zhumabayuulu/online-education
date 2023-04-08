@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/secondary.css' %}">
+<style>
+    .linda{
+    margin-left:2rem;}
+</style>
+
+
+
+<body class=" m-0 border-0 bd-example">
+
+    <!-- Example Code -->
+    <div class="row d-flex justify-content-center mt-5">
+        {% if user.is_authenticated %}
+    <div class="col-md-8 col-lg-6">
+        <h1 class="mt-4 linda"><a href="{% url 'chat:haus'%}" class=" ml-0 me-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="30" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+  <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+</svg>
+        </a>  Discover friends</h1>
+             <div class="linda" >
+                      <form  class=" input-group mb-3 mt-3" style="width: 350px;" method="get" >
+                      <input name="q" type="search" class="form-control" placeholder="Search global friends" aria-label="Recipient's username" aria-describedby="button-addon2">
+                      <button   class="btn btn-outline-secondary" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg></i></button>
+                      </form>
+                </div>
+        {% for user in users %}
+        <div class="card mb-3 " style="margin-left:1rem;">
+          <div class="card-body">
+                <a href="{% url 'chat:chat' user.username%}" >
+                <div class="d-flex flex-start">
+                {% if user.pic %}
+                <img  class="rounded-circle shadow-1-strong me-3" src="{{user.pic.url}}" alt="avatar"width="30" height="30" />
+                        {% endif %}
+              <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="text-primary fw-bold mb-0">
+                      {{user.username}}
+
+                  </h6>
+
+                  <p class="status mb-0"> <i class="fa fa-circle offline"></i> {{user.last_login|naturaltime}}</p>
+                </div>
+              </div>
+
+            </div>
+                </a>
+          </div>
+        </div>
+
+
+{% endfor %}
+    </div>
+
+  </div>
+
+    </div>
+         {% else %}<br><br>
+                <p class="text-muted"> You are not authenticated</p>
+                {% endif %}
+    </div>
+
+    <!-- End Example Code -->
+
+  </body>
+{% endblock content %}

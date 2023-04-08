@@ -1,0 +1,114 @@
+body{
+      background-color: rgb(255, 255, 255);
+  }
+
+  .container{
+      margin-top: 100px;
+      margin-left: 33% !important;
+      width: 400px !important;
+      height: 500px !important;
+      border-radius: 15px !important;
+      background-color: rgba(245, 245, 245, 0.575) !important;
+      box-shadow: 2px 2px 5px grey!important;
+
+  }
+  .avatar{
+      float: left !important;
+      width: 30% !important;
+      margin: 15px !important;
+      margin-left: 0px !important;
+      margin-bottom: 0 !important;
+  }
+  .avatar img{
+      width: 120px !important;
+      height:120px !important;
+      border-radius: 50% !important;
+  }
+  .main-info{
+      float: right !important;
+      width: 65% !important;
+      margin-bottom: 0 !important;
+
+  }
+  .main-info .name{
+      margin-top:50px !important;
+  }
+  .main-info p{
+      margin-top: -10px;
+      color: grey;
+      font-size: 13px;
+
+  }
+  .main-info a{
+      margin-left:120px;
+      margin-top: -10px;
+  }
+  .info{
+      margin-top: -12px;
+
+  }
+  .info h5{
+      color: grey;
+      font-weight: lighter;
+      margin-top: 10px;
+
+  }
+  .info .tag{
+      margin-top:-18px ;
+      font-size: smaller;
+      color: grey;
+  }
+  .info .content{
+      font-size: 17px;
+      width: 350px;
+  }
+
+  .info .content input{
+      font-size: 16px;
+      background-color: rgba(245, 245, 245, 0.575);
+      border: none;
+      width: 350px;
+  }
+  .main-info input{
+      font-size: 16px;
+      background-color: rgba(245, 245, 245, 0.575);
+      border: none;
+  }
+  .container2{
+      margin: 0 6%;
+      box-shadow: 2px 2px 5px grey !important;
+
+  }
+  .container2 .content{
+      float: left !important;
+      width: 350px !important;
+
+      border-radius: 15px !important;
+      background-color: rgba(245, 245, 245, 0.575);
+      height: 80px !important;
+      box-shadow: 2px 2px 5px grey !important;
+
+  }
+
+  .container2 .content:hover{
+   box-shadow: none !important;
+   transition: 2s !important;
+   background-color: white !important;
+  }
+
+  .container2 img{
+    width: 40px !important;
+    height: 40px !important;
+    margin-left: 15px !important;
+
+  }
+.container2 .main-info{
+    margin-top: -15px !important;
+}
+
+.search{
+       margin-left: 25px !important;
+       margin-top: 100px !important;
+
+
+}

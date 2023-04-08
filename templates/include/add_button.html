@@ -1,0 +1,104 @@
+{% load grouptags%}
+
+
+{% url 'adminn' as admin_page_url %}
+{% url 'okuu:learn_view' as learn_page_url%}
+{% url 'haus' as message_page_url %}
+{% url 'main:shop' as stor_page_url%}
+{% url 'nature:nature' as nature_page_url%}
+{% url 'okuu:list_test' as test_page_url%}
+
+<style>
+
+  .mb{
+  margin-bottom:5rem;}
+
+
+.fabs {
+  position: fixed;
+  right: 30px;
+  bottom: 20px;
+}
+
+.action {
+  background: rgb(255, 0, 128);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.action i {
+  position: absolute;
+  color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.action:hover {
+  background-color: rgb(255, 103, 179);
+}
+
+
+
+</style>
+  <body>
+    <div class="fabs mb" onclick="toggleBtn()">
+      <div class="action">
+
+
+         {% if request.path == admin_page_url %}
+              <a href="{%url 'article_new'%}">
+                {% endif %}
+
+                 {% if request.path == stor_page_url%}
+               <a href="{%url 'main:new'%}">
+            {% endif %}
+                {% if request.path == learn_page_url%}
+                 <a href="{%url 'okuu:oku_new'%}">
+            {% endif %}
+                {% if request.path == nature_page_url%}
+                <a href="{%url 'nature:new'%}">
+            {% endif %}
+
+                 {% if request.path == test_page_url %}
+                 <a href="{% url 'okuu:new_test'%}">
+                {% endif %}
+
+
+        <i class="bi bi-plus-lg"></i></i>
+        <i class="fas fa-times" id="remove" style="display: none"></i>
+              </a>
+      </div>
+    </div>
+
+  </body>
+  <script>
+    function toggleBtn() {
+      const Btns = document.querySelector(".btns");
+      const add = document.getElementById("add");
+      const remove = document.getElementById("remove");
+      const btnnn = document.querySelector(".btns").querySelectorAll("a");
+      Btns.classList.toggle("open");
+      if (Btns.classList.contains("open")) {
+        remove.style.display = "block";
+        add.style.display = "none";
+        btnnn.forEach((e, i) => {
+          setTimeout(() => {
+            bottom = 70 * i;
+            e.style.bottom = bottom + "px";
+            console.log(e);
+          }, 100 * i);
+        });
+      } else {
+        add.style.display = "block";
+        remove.style.display = "none";
+        btnnn.forEach((e, i) => {
+          e.style.bottom = "0px";
+        });
+      }
+    }
+  </script>

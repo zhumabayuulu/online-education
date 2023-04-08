@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container bottom">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10 mt-5 ">
+             <div class="row">
+               <h2 class="col-10">New Post</h2>
+            <button type="button" class="btn btn-info col-2" data-bs-toggle="modal" data-bs-target="#storeadd">
+                      <i class="bi bi-question-lg"></i>
+            </button>
+           </div>
+            <form  method="post" enctype="multipart/form-data" >{% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary" >Submit</button>
+                <a class="btn btn-secondary" href="{% url 'main:shop'%}"> Back home</a>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+  </div>
+{% endblock content %}

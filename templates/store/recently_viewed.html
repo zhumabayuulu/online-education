@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+  E-Bazar - Recently Viewed
+{% endblock title %}
+
+{% block content %}
+   <!-- Product Cart Start -->
+   <div class="container">
+    <div class=" w-100 mt-4">
+        <h4 class="d-block" > Recently Viewed Products</h4>
+        <div class="d-flex flex-wrap justify-content-between">
+         <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+       {% for i in products %}
+        {% if product != i %}
+		<div class="col hp">
+			<div class="card h-100 shadow-sm">
+				<a href="#">
+
+					<img src="{{i.productimage_set.all.first.image.url}}" class="card-img-top" alt="product.title" />
+				</a>
+
+				<div class="label-top shadow-sm">
+					<a class="text-white" href="#">{{i.category}}</a>
+				</div>
+				<div class="card-body">
+					<div class="clearfix mb-3">
+						<span class="float-start badge rounded-pill bg-success">{{i.price}} com</span>
+						 {% if i.book_author %}
+                            <span class="float-end"><a href="#"
+                                    class="small text-muted text-uppercase aff-link">author: {{i.book_author}}</a>
+                            </span>
+                             {% endif%}
+					</div>
+					<h6 class="card-title">
+						<a href="{% url 'main:detail' i.id %}" class="title">{{i.title}}</a>
+					</h6>
+				</div>
+			</div>
+		</div>
+        {% endif %}
+		{% endfor %}
+	</div>
+
+        </div>
+    </div>
+</div>
+<!-- Product Cart End -->
+{% endblock content %}

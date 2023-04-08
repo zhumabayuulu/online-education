@@ -1,0 +1,353 @@
+
+{% load static %}
+{% block content %}
+{% url 'adminn' as admin_page_url %}
+{% url 'okuu:learn_view' as learn_page_url%}
+{% url 'chat:haus' as message_page_url %}
+{% url 'main:shop' as stor_page_url%}
+{% url 'nature:nature' as nature_page_url%}
+{% url 'okuu:list_test' as test_page_url%}
+{% url 'users:discover' as discover_page_url%}
+{% url 'main:detail' as detail_page_url%}
+{% url 'okuu:learn_detail' as oku_detail_page_url%}
+<style>
+
+.dro{
+ --bs-dropdown-bg:#fff3cd !important;
+}
+.loki{
+transform:translate3d(34px, 45px, 0px)!important;
+color: #72dc35 !important;
+}
+.laki{
+transform: translate3d(-3px, 39.6667px, 0px)!important;
+ --bs-dropdown-min-width: 15rem!important;
+}
+.nami {
+  padding-right:11px !important;
+}
+ul {
+    padding-left: initial !important;
+    margin-bottom: 0rem !important;
+}
+
+</style>
+
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="{% static 'assets/css/styles.css'%}">
+
+
+
+
+        <!--=============== HEADER ===============-->
+        <header class="headerr" id="header">
+            <nav class="navv containerr">
+                <a href="#" class="nav__logo "><i class= 'bx bxs-graduation'></i> M'sycamore</a>
+                <!-- dropdown menu -->
+            {% if request.path == admin_page_url %}
+                 <div>
+                        <button class="btn ull" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dro mt-4 loki  " style="padding-left:1rem; color:#fff3cd">
+            <li>
+              <form class="mr-3 me-3 d-flex" role="search">
+              <input class="form-control me-3 mr-3" name="q" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form></li>
+              </li>
+      </ul>
+    </div>
+              <div class="dropdown nav__logo ">
+                      <button
+                        class="btn nav__logo "
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class='bx bxs-dashboard nav__logo'></i><i class="bx bx-down-arrow-alt"></i>
+                      </button>
+                      <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki" style="background-color:#fff;">
+                        <li><!-- Button trigger modal -->
+                        <button type="button" class="btn  dropdown-item fw-bold" style="color:#004953; "data-bs-toggle="modal" data-bs-target="#blogadmin">
+                         the information<i class="bi bi-question-lg"></i>
+                        </button>
+                          </li>
+
+                        {% for i in admin_category %}
+                           <li><hr class="dropdown-divider bg-light "></li>
+                        <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{% url 'admin_category' i.name %}">#{{i.name}}</a></li>
+                        {% endfor %}
+                          <li><hr class="dropdown-divider bg-light "></li>
+                      </ul>
+                    </div>
+                {% endif %}
+
+                 {% if request.path == stor_page_url%}
+                 <div>
+                        <button class="btn ull" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dro mt-4 loki  " style="padding-left:1rem; color:#fff3cd">
+            <li>
+              <form  class="mr-3 me-3 d-flex" role="search">
+              <input class="form-control me-3 mr-3"name="q" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+              </li>
+      </ul>
+    </div>
+              <div class="dropdown nav__logo ">
+                      <button
+                        class="btn nav__logo "
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+
+                          <i class='bx bxs-dashboard'></i><i class="bx bx-down-arrow-alt"></i>
+
+                      </button>
+                      <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki" style="background-color:#fff;">
+                          <li><button type="button" class="btn dropdown-item fw-bold" style="color:#004953;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          the information<i class="bi bi-question-lg"></i>
+                        </button></li>
+                          <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{%url 'users:recently_viewed'%}">histori</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                       {% for i in categories %}
+                        <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{% url 'main:category' i.name %}">{{i.name}}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+            {% endif %}
+                {% if request.path == learn_page_url%}
+                 <div>
+                        <button class="btn ull" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dro mt-4 loki  " style="padding-left:1rem; color:#fff3cd">
+            <li>
+              <form class="mr-3 me-3 d-flex" role="search">
+              <input class="form-control me-3 mr-3"name="q" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+              </li>
+      </ul>
+    </div>
+              <div class="dropdown nav__logo ">
+                      <button
+                        class="btn nav__logo "
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class='bx bxs-dashboard '></i><i class="bx bx-down-arrow-alt"></i>
+                      </button>
+                      <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki" style="background-color:#fff;" >
+                           <li><button type="button" class="btn dropdown-item fw-bold" style="color:#004953;" data-bs-toggle="modal" data-bs-target="#bloglearn">
+                         the information<i class="bi bi-question-lg"></i>
+                        </button></li>
+                            <li><hr class="dropdown-divider bg-light"></li>
+                        <li><a class="dropdown-item fw-bold" style="color:#004953; " href="{% url 'okuu:list_test'%}"> TESTS <i class="bi bi-file-earmark-check "></i> </a></li>
+                           <li><hr class="dropdown-divider bg-light "></li>
+                        {% for i in learn_category %}
+                        <li><a class="dropdown-item fw-bold" style="color:#004953;"href="{% url 'okuu:oku_category' i.name %}"> #{{i.name}}</a></li>
+                         <li><hr class="dropdown-divider bg-light "></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+            {% endif %}
+                {% if request.path == nature_page_url%}
+                 <div>
+                        <button class="btn ull" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dro mt-4 loki  " style="padding-left:1rem; color:#fff3cd">
+            <li>
+              <form class="mr-3 me-3 d-flex" role="search">
+              <input class="form-control me-3 mr-3"  name="q"type="search" placeholder="издоо..." aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+            </li>
+      </ul>
+    </div>
+              <div class="dropdown nav__logo ">
+                      <button
+                        class="btn nav__logo "
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class='bx bxs-dashboard'></i><i class="bx bx-down-arrow-alt"></i>
+                      </button>
+                      <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki"  style="background-color:#fff;">
+                          <li><!-- Button trigger modal -->
+                        <button type="button" class="btn  dropdown-item fw-bold" style="color:#004953; " data-bs-toggle="modal" data-bs-target="#nature">
+                          the information<i class="bi bi-question-lg"></i>
+                        </button>
+                          </li>
+                        <li><hr class="dropdown-divider" /></li>
+
+                       {% for i in nature_category %}
+                        <li><a class="dropdown-item fw-bold" style="color:#004953; " href="{% url 'nature:nature_category' i.name %}">#{{i.name}}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+            {% endif %}
+
+                 {% if request.path == test_page_url %}
+                 <div>
+                        <button class="btn ull" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dro mt-4 loki  " style="padding-left:1rem; color:#fff3cd">
+            <li>
+              <form class="mr-3 me-3 d-flex" role="search">
+              <input class="form-control me-3 mr-3" name="q" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form></li>
+              </li>
+      </ul>
+    </div>
+              <div class="dropdown nav__logo ">
+                      <button
+                        class="btn nav__logo "
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <i class='bx bxs-dashboard'></i><i class="bx bx-down-arrow-alt"></i>
+                      </button>
+                      <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki"  style="background-color:#fff;">
+
+                        <li><button type="button" class="btn dropdown-item fw-bold" style="color:#004953;" data-bs-toggle="modal" data-bs-target="#testlist">
+                          the information<i class="bi bi-question-lg"></i>
+                        </button></li>
+                          <li><hr class="dropdown-divider bg-light"></li>
+                        {% for i in test_category %}
+
+                        <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{% url 'okuu:category' i.name %}"> # {{i.name}}</a></li>
+                          <li><hr class="dropdown-divider bg-light"></li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                {% endif %}
+                 {% if request.path == oku_detail_page_url %}
+                 <div>
+                        <button class="btn ull" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dro mt-4 loki  " style="padding-left:1rem; color:#fff3cd">
+            <li>
+              <form class="mr-3 me-3 d-flex" role="search">
+              <input class="form-control me-3 mr-3" name="q" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form></li>
+              </li>
+      </ul>
+    </div>
+                {% endif %}
+                <!-- enddropdown menu -->
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="{{admin_page_url}}" class="nav__link {% if request.path == admin_page_url%} active-link {% endif%}">
+                                <i class='bx bx-home-alt nav__icon'></i>
+                                <span class="nav__name">M'HOME</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="{{learn_page_url}}" class="nav__link {% if request.path == learn_page_url%} active-link {% endif%}{% if request.path == oku_detail_page_url %} active-link {% endif%}">
+                                <i class='bx bx-book-alt nav__icon'></i>
+                                <span class="nav__name">M'LEARN</span>
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{{message_page_url}}" class="nav__link {% if request.path == message_page_url%} active-link {% endif%}{% if request.path == discover_page_url%} active-link {% endif%}">
+                                <i class='bx bx-conversation  nav__icon'></i>
+                                <span class="nav__name">M'MESSAGE</span>
+                            </a>
+                        </li>
+
+                        <li class="nav__item">
+                            <a href="{{stor_page_url}}" class="nav__link {% if request.path == stor_page_url%} active-link {% endif%}{% if request.path == detail_page_url%} active-link {% endif%}">
+                                <i class='bx bxs-cart nav__icon'></i>
+                                <span class="nav__name">M'SHOP</span>
+                            </a>
+                        </li>
+
+
+                        <li class="nav__item ">
+                            <a href="{{nature_page_url}}" class="nav__link {% if request.path == nature_page_url%} active-link {% endif%}">
+                                <i class='bx bxs-landscape nav__icon'></i>
+                                <span class="nav__name">M'PERFECT</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="dropdown nami">
+                  <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                      <svg xmlns="http://www.w3.org/2000/svg" width="23" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                      <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                    </svg>
+
+
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                       {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'users:profile' request.user  %}"><i class="bi bi-person"></i> {{request.user.username}}</a></li>
+                      <li><hr class="dropdown-divider bg-light"></li>
+                    <li><a class="dropdown-item" href="{% url 'users:saveds'%}"><i class="bi bi-bookmark-check"></i> сакталгандар</a></li>
+                      <li><hr class="dropdown-divider bg-light"></li>
+                      <li><a class="dropdown-item" href="{% url 'users:contact_form' %}"><i class="bi bi-share"></i> биз менен байлануу</a></li>
+                         <li><hr class="dropdown-divider bg-light"></li>
+                    <li><a class="dropdown-item" href="{% url 'users:logout'%}"><i class="bi bi-box-arrow-right"></i> чыгуу</a></li>
+                      {%else %}
+                      <li><p class="dropdown-item" ><i class="bi bi-box-arrow-right"></i> toluk istetu uchun katalaunuz</p></li>
+                      {%endif%}
+                  </ul>
+                </div>
+            </nav>
+        </header>
+
+       <!-- <main>
+            <section class="container section section__height" id="contactme">
+                <h2 class="section__title">Contactme</h2>
+            </section>
+        </main>-->
+
+
+
+        <!--=============== MAIN JS ===============-->
+        <script src="{% static 'assets/js/main.js'%}"></script>
+
+
+
+{% endblock content%}

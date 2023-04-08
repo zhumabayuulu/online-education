@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container top bottom">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-12 mt-5 ">
+            <h2 style="color:blue;">Update post</h2>
+            <form  method="post" enctype="multipart/form-data" >{% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary" >сактоо</button>
+                <a class="btn btn-danger" href="{% url 'nature:delete' pr.id  %}"> Delete</a>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+  </div>
+{% endblock content %}

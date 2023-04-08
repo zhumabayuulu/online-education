@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{%load static%}
+{% block title %}
+  E-bazar - Login
+{% endblock title %}
+
+{% block content %}
+
+<style>
+body {
+    margin :auto!important;
+    }
+    ul {
+    padding-left:0 !important;
+    margin-top :auto !important;
+     margin-bottom :0 !important;
+    }
+
+
+
+
+</style>
+  <div class="container top">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-12 mt-5 ">
+            <h2>Login here</h2>
+            <form  method="post" >{% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary" >Login</button>
+                <a href="{% url 'users:register' %}"> signup </a>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+  </div>
+
+
+{% endblock content %}

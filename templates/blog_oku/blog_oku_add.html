@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container bottom top">
+    <div class="row">
+        <div class="col"></div>
+
+        <div class="col-10 mt-5 ">
+
+           <div class="row">
+               <h2 class="col-10">New Post</h2>
+            <button type="button" class="btn btn-info col-2" data-bs-toggle="modal" data-bs-target="#learnadd">
+                      <i class="bi bi-question-lg"></i>
+            </button>
+           </div>
+
+             <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+        <button class="btn btn-success ml-2 me-3" type="submit">сактоо</button>
+                  <a  class="" href="{% url 'okuu:learn_view' %}"> back </a>
+    </form>
+        </div>
+        <div class="col"></div>
+    </div>
+  </div>
+{% endblock content %}

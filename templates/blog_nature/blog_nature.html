@@ -1,0 +1,112 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load grouptags%}
+{% block content %}
+<style>
+.topimg {
+  position: absolute;
+  top: 0px;
+  left: 0rem;
+  font-size: 15px;
+  color :#fff
+}
+.topedit {
+  position: absolute !important;
+  top: 0px !important;
+  right: 0rem !important;
+  font-size: 15px;
+  color :#fff
+}
+
+body {
+    display: grid;
+    place-items: center;
+
+}
+ .g-4{--bs-gutter-x: 0rem!important;}
+</style>
+<div class="row  top bottom row-cols-1 row-cols-md-3 ">
+
+  <div class="col">
+{% for i in products %}
+    <div class="card  mt-3 mb-3"
+         style="display: flex;
+    width: clamp(22rem, calc(0rem + 2vw), 22rem) !important;
+    overflow: hidden;
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.7em;
+    background: #ECE9E6;">
+		 {% if i.image %}
+      <img src="{{ i.image.url }}" class="card__image" alt="Ho"/>
+		 {% endif%}
+                        {% if i.video %}
+                            <video class="embed-responsive embed-responsive-16by9" controls="controls">
+                                <source src="{{i.video.url}}" type="video/mp4" />
+                            </video>
+                        {% endif%}
+                        <div class="d-flex flex-start align-items-center mt-0 topimg">
+                            <img class="rounded-circle shadow-1-strong me-1 mr-0"
+                                src="{{i.author.pic.url}}" alt="avatar" width="34" height="34" />
+                            <div class="lko">
+                                <p class="mb-0">
+                                    <a class="mb-0 mt-0 font-monospace small fs-6 " style="color:#fff;" href="{% url 'users:profile' i.author.username  %}">@{{i.author}}
+                                        <span class="small"> <i class="bi bi-calendar-check"></i> {{ i.date|date:'Y-m-d'}}</span>
+                                    </a>
+                                </p>
+
+
+                            </div>
+                        </div>
+                            <p class=" small mb-0 mt-0" style="color:#fff;">
+                                    {% if request.user == i.author %}
+                                    <a class="btn topedit" href="{% url 'nature:update' i.id %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff"
+                                            class=" float-end bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                        </svg>
+                                    </a>
+                                    {% endif %}
+                                </p>
+      <div class="card-bodyt">
+       <div class="d-flex justify-content-between align-items-center me-3 mb-0">
+                  <div class="d-flex align-items-center mt-2  mb-0"style="margin-left:1rem;">
+                 <p class="text-success mt-0 mb-1 "><i class="bi bi-geo-alt-fill  me-1"></i> {{i.address}}</p>
+                  </div>
+                  <form action="{% url 'nature:like-post'%}" method="POST" class='like-form' id='{{i.id}} '>
+                              {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{i.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{i.id}}">
+                                        {% if user not in i.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{i.id}} me-3">{{i.num_likes}}</strong>
+									<span>
+                                         {% if request.user == i.author %}
+                                        {% else%}
+                                    <a href="{% url 'users:naturesaved' i.id %}" >
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+</svg>
+									</a>
+										{% endif%}
+                                    </span>
+
+                            </form>
+                </div>
+      </div>
+
+    </div>
+{% endfor %}
+  </div>
+
+</div>
+                 {% if request.user|in_group:'natureadd'%}
+                 {% include 'include/add_button.html'%}
+{% endif%}
+<script src="{% static 'js/like_button.js'%}"></script>
+{% endblock content %}

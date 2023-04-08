@@ -1,0 +1,147 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Material Design for Bootstrap</title>
+  <!-- MDB icon -->
+
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <!-- MDB --
+  <link rel="stylesheet" href="css/bootstrap-comments.min.css" />-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'css/readbutton.css'%}">
+</head>
+
+<body>
+
+ <section style="background-color: #eee;">
+    <div class="container my-5 py-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-lg-10 col-xl-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-start align-items-center">
+                <img class="rounded-circle shadow-1-strong me-3"
+                  src="{{request.user.pic.url}}" alt="avatar" width="35"
+                  height="35" />
+                <div>
+                  <h6 class="fs-6 mb-1 badge bg-success">#{{bloglearn.category}}</h6>
+                  <p class="text-muted small mb-0 me-5">
+                    {{bloglearn.date}}
+
+                </div>
+                  <div> {% if request.user == bloglearn.author %}
+                      <a href="{% url 'okuu:bloglearn_delete' bloglearn.id %}" class="link-muted me-4"><i class="bi bi-trash3"></i></i></a>
+				 <a class="btn "  href="{% url 'okuu:article_edit' bloglearn.id%}">
+				  <i class="bi bi-pen"></i>
+			  	</a>
+				  {% endif %}
+                  </p>
+                </div>
+              </div>
+              <div class="img-wrap">
+                {% if bloglearn.image %}
+				 <img class="card-img-top" src="{{bloglearn.image.url}}"
+                  />
+                  {% endif %}
+
+
+			</div> <!-- img-wrap.// -->
+              <p class="mt-3 mb-4 pb-2">
+              {{bloglearn.description}}
+              </p>
+
+              <div class="small d-flex justify-content-start">
+                <a href="#!" class="d-flex align-items-center me-3">
+                  <p class="mb-0 me-3"><i class="far fa-comment-dots me-1"> жооптор:</i> {{bloglearn.comments.count}}</p>
+                </a>
+
+                <a  class="d-flex align-items-center me-3"href="{% url 'okuu:learn_view'%}">
+                  <i class="fas fa-share me-2"></i>
+                  <p class="mb-0">артка кайтуу</p>
+                </a>
+              </div>
+            </div>
+
+
+               <form action="{% url 'okuu:blog_comment_new' bloglearn.id %}" method="post" class="input-group">{% csrf_token%}
+          <input class="form-control" name="body" type="text" placeholder="сиздин жооп ..." aria-describedby="'button-addon" >
+          <button class="btn btn-outline-success" type="submit" id="button-addon"><i class="bi bi-send-plus"></i></button>
+      </form>
+          </div>
+
+          {% for comment in comments %}
+          <div class="card mt-3">
+
+
+            <div class=" card-body">
+
+              <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="text-primary fw-bold mb-0">
+                    <a href="{% url 'users:profile' comment.author.username  %}">@{{comment.author}}</a>
+
+                  </h6>
+                  <p class="mb-0">{{comment.date}}</p>
+                </div>
+
+                <div data-expandable>
+                  <p>{{comment.body}} </p>
+                  <button data-expand-button class=" btn btn-primary btn-sm">Read More</button>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div class="d-flex align-items-center">
+
+                         <form action="{% url 'okuu:like_learn_comment' %}" method="POST" class='like-form' id='{{comment.id}}'>
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{comment.id}}>
+
+                            <button type="submit" class="btn-sm btn btn-outline-success  like-btn{{comment.id}}">
+                                {% if user not in comment.liked.all %}
+                                    Like
+                                {% else %}
+                                     Unlike
+                                {% endif %}
+                            </button>
+                             <strong class=" me-4 like-count{{comment.id}}"> {{comment.num_likes}}</strong>
+                    </form>
+                    </div>
+                     {% if request.user == comment.author %}
+                        <small ><a class="link-delete" href="{% url 'okuu:comment_delete' bloglearn.id comment.id   %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                          <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg></a>
+                        </small>
+                    {% endif %}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        {% endfor%}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Start your project here-->
+<script src="{% static 'js/like_button.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="{% static 'js/readbutton.js'%}"></script>
+</body>
+
+{% endblock content %}

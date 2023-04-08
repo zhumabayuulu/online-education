@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="content mt-3">
+    <h3>{{test.title}}</h3>
+    <form class="card p-3"method='post'>{%csrf_token%}
+        {% for q in questions %}
+        <h5>{{forloop.counter}}. {{q.question}}</h5>
+        <div class="form-check">
+            <input value="a"required name="{{q.id}}" class="form-check-input"id="{{q.id}}-a" type="radio">
+            <label for="{{q.id}}-a">{{q.a}}</label>
+            <br>
+            <input value="b" name="{{q.id}}" class="form-check-input"id="{{q.id}}-b" type="radio">
+            <label for="{{q.id}}-a">{{q.b}}</label>
+            <br>
+            <input value="c" name="{{q.id}}" class="form-check-input"id="{{q.id}}-c" type="radio">
+            <label for="{{q.id}}-a">{{q.c}}</label>
+            <br>
+            <input value="d" name="{{q.id}}" class="form-check-input"id="{{q.id}}-d" type="radio">
+            <label for="{{q.id}}-a">{{q.d}}</label>
+        </div>
+        <hr>
+        {%endfor%}
+        <br><button class="btn btn-primary" type="submit">submit</button>
+    </form>
+</div>
+{%endblock content%}

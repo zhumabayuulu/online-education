@@ -1,0 +1,112 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load grouptags%}
+{% load static %}
+{% block content %}
+
+<style>
+
+body {
+    font-family: "Quicksand", sans-serif;
+    display: gridd;
+    place-items: center;
+    background: #7f7fd5;
+
+}
+	.topricht {
+  position: absolute;
+  top: 0px;
+  right: 0rem;
+  font-size: 15px;
+  color :#fff
+}
+</style>
+<link rel="stylesheet" href="{% static 'css/admin.css'%}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<div class="container mb-5 top bottom">
+{% for article in almanadmin %}
+	<div class="card mt-2">
+		<div class="card__header">
+			{% if article.photo %}
+			<img src="{{ article.photo.url }}" alt="card__image" class="card__image"  width="600">
+            {%  endif %}
+
+			 <div class="card-img-top">
+				  {% if request.user == article.author %}
+				 <a class="btn topricht" href="{% url 'article_edit' article.id%}">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+				 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+				</svg>
+			  	</a>
+				  {% endif %}
+  			</div>
+		</div>
+		<div class="card__body">
+			<div class="row mt-0">
+				<div class="col-7"><small class="tag tag-blue  fs-6"># {{article.category}} </small></div>
+			<div class="col-5"><small class="tag tag-red "><i class="bi bi-calendar2-check"></i> {{ article.date|date:'Y-m-d' }}</small></div>
+			</div>
+			<h4 style="margin-bottom:0rem;">{{ article.title }}</h4>
+
+			<p style="margin-bottom: 0rem;">{{ article.body }}</p>
+		</div>
+		<div class="  card__footer">
+			<div class="user">
+				<img src="{{article.author.pic.url}}" alt="user__image" class="user__image" width="40" height="40">
+				<div class="user__info me-5">
+					<h6 style="
+                      position: absolute;
+                      bottom: 1rem;
+                      left: 4rem;
+                      font-size: 15px;
+                    ">
+						<a href="{% url 'users:profile' article.author.username  %}">@{{article.author}}</a></h6>
+				</div>
+
+				<div>
+					<form action="{% url 'like-postt'%}" method="POST" class='like-form' id='{{article.id}} ' style="
+                      position: absolute;
+                      bottom: 0.7rem;
+                      right: 1rem;
+                      font-size: 15px;">
+                              {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{article.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{article.id}}">
+                                        {% if user not in article.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{article.id}} me-3">{{article.num_likes}}</strong>
+									<span>
+											 {% if request.user == article.author %}
+                  							{% else%}
+										 <a href="{% url 'users:adminsaved' article.id %}" >
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+</svg>
+										 </a>
+										{% endif %}
+
+									</span>
+                            </form>
+			</div>
+		</div>
+	</div>
+
+</div>{% endfor %}
+
+</div>
+
+
+ {% if request.user|in_group:'adminpostadd'%}
+                 {% include 'include/add_button.html'%}
+{% endif%}
+<script src="{% static 'js/like_button.js'%}"></script>
+
+{% endblock content %}

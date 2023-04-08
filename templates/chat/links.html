@@ -1,0 +1,173 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/secondary.css' %}">
+
+  </head>
+  <body>
+    {% block content %}
+    {% endblock content %}
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<link rel="stylesheet" href="{% static 'css/admin.css'%}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'css/readbutton.css'%}">
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                     {% for nature in products %}
+                    <div class="card mb-3" style="margin-left:2.5rem">
+                         {% if nature.image %}
+                        <img class="d-block w-100 " width="400" height="270" src="{{nature.image.url}}" alt="">
+                         {% endif%}
+                        {% if nature.video %}
+                            <video class="embed-responsive embed-responsive-16by9" controls="controls">
+                                <source src="{{nature.video.url}}" type="video/mp4" />
+                            </video>
+                        {% endif%}
+                        <div class="d-flex flex-start align-items-center mt-0 bot">
+                            <img class="rounded-circle shadow-1-strong me-1 mr-0"
+                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="28" height="28" />
+                            <div class="lko">
+                                <p class="mb-0">
+                                    <a class="mb-0 mt-0 font-monospace small fs-6 " style="color:#fff;" href="{% url 'users:profile' nature.author.username  %}">@{{nature.author}}
+                                        <span class="small"> <i class="bi bi-calendar-check"></i> {{ nature.date|date:'Y-m-d'}}</span>
+                                    </a>
+                                </p>
+
+                                <p class=" small mb-0 mt-0" style="color:#fff;">
+                                    {% if request.user == nature.author %}
+                                    <a class="btn topricht" href="{% url 'nature:update' nature.id %}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff"
+                                            class=" float-end bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                            <path
+                                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                        </svg>
+                                    </a>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+
+                    <div>
+                        <div class="d-flex justify-content-start">
+                             <p class="me-5 mb- m-1" style="color:green;"><i class="bi bi-geo-alt-fill"></i> {{nature.address}}</p>
+                                <form action="{% url 'nature:like-post' %}" method="POST" class='like-form ' id='{{nature.id}}'>
+                                {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{nature.id}}>
+                                    <button type="submit" class=" btn btn-outline-success btn-sm like-btn{{nature.id}}">
+                                        {% if user  not in nature.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{nature.id}} me-3">{{nature.num_likes}}</strong>
+
+                            </form>
+                            <a href="{% url 'users:naturesaved' nature.id %}" class="float-end"><i class="bi bi-bookmark-fill"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+
+<div class="container mt-3 mb-5">
+    {% for article in almanadmin %}
+	<div class="card ">
+		<div class="card__header">
+			{% if article.photo %}
+			<img src="{{ article.photo.url }}" alt="card__image" class="card__image"  width="600">
+            {%  endif %}
+
+			 <div class="card-img-top">
+				  {% if request.user == article.author %}
+				 <a class="btn topricht" href="{% url 'article_edit' article.id%}">
+				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+				 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+				</svg>
+			  	</a>
+				  {% endif %}
+  			</div>
+		</div>
+		<div class="card__body">
+			<span class="tag tag-blue ">{{article.category}}</span><small>  {{ article.date|date:'Y-m-d' }}</small>
+			<h4 style="margin-bottom:0rem;">{{ article.title }}</h4>
+
+			<p style="margin-bottom: 0rem;">{{ article.body }}</p>
+		</div>
+		<div class="  card__footer">
+			<div class="user">
+				<img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
+				<div class="user__info me-5">
+					<h6 style="
+                      position: absolute;
+                      bottom: 1rem;
+                      left: 4rem;
+                      font-size: 15px;
+                    ">
+						<a href="{% url 'users:profile' article.author.username  %}">@{{article.author}}</a></h6>
+				</div>
+
+				<div>
+					<form action="{% url 'like-postt'%}" method="POST" class='like-form' id='{{article.id}} ' style="
+                      position: absolute;
+                      bottom: 0.7rem;
+                      right: 1rem;
+                      font-size: 15px;">
+                              {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{article.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{article.id}}">
+                                        {% if user not in article.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{article.id}} me-3">{{article.num_likes}}</strong>
+									<span>
+										<a href="{% url 'users:adminsaved' article.id %}" ><i class="bi bi-bookmark"></i></a>
+									</span>
+
+                            </form>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+
+</div>
+</div>
+
+{% include 'include/add_button.html'%}
+<script src="{% static 'js/like_button.js'%}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+

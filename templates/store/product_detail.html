@@ -1,0 +1,249 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block content%}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="{%static 'css/store.css'%}"}>
+<link rel="stylesheet" href="{%static 'css/store_detail.css'%}"}>
+<div class = "card-wrapper mt-5 m-3">
+  <div class = "cardd">
+    <!-- card left -->
+    <div class = "product-imgs">
+      <div class = "img-display">
+        <div class = "img-showcase">
+
+
+
+          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for picture in product.productimage_set.all  %}
+                        {% if picture == product.productimage_set.all.first %}
+                        <div class="carousel-item active thumbnail shadow-sm ">
+                            <img class="" src="{{picture.image.url}}" alt="">
+                        </div>
+                        {% else %}
+                        <div class="carousel-item thumbnail shadow-sm">
+                            <img class="shoe image d-block w-100 " width="400" height="270" src="{{picture.image.url}}" alt="">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+              </div>
+            </div>
+
+ <div class = "img-select">
+
+      </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+<div class="product-content">
+	<h2 class="product-title">{{product.title}}</h2>
+	<div class="product-rating">
+		<i class="fas fa-star"></i>
+		<i class="fas fa-star"></i>
+		<i class="fas fa-star"></i>
+		<i class="fas fa-star"></i>
+		<i class="fas fa-star-half-alt"></i>
+		<span>4.7(21)</span>
+	</div>
+
+	<div class="product-price mb-0">
+		<!--
+		<p class="last-price">Old Price: <span>$257.00</span></p>-->
+		<p class="new-price">New Price: <span>${{product.price}}</span></p>
+	</div>
+
+	<div class="product-detail font-monospace mt-0 mb-0">
+		<p>{{product.description|safe}}</p>
+
+
+	</div>
+
+
+
+	<div class="social-links">
+		<p class="me-3 fst-italic fw-bold ">phone nomber <i class="bx bxs-phone">:</i></p>
+
+		<p>{{product.tg_username}}</p>
+
+
+
+	</div>
+	<div class="purchase-info mb-0">
+		<button class=" collapsed btn" type="button" data-bs-toggle="collapse"
+			data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+		>Comments: {{comment_count}}
+		</button>
+		{% if request.user == product.author %}
+		<a class="btn btn-warning bold-btn" href="{% url 'main:update' product.id%}">edit</a>
+
+		{% endif %}
+		{% if product.pdf %}
+		 <a href="{{ product.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+              жуктоп алуу <i class="bx bx-download"></i>
+            </a>
+		{% endif%}
+
+	</div>
+
+
+</div>
+<form action="{% url 'main:comment_new' product.id %}" method="post" class="input-group">{% csrf_token%}
+          <input class="form-control" name="body" type="text" placeholder="Type your comment..." aria-describedby="'button-addon" >
+          <button class="btn btn-outline-success" type="submit" id="button-addon"><i class="bi bi-send-plus"></i></button>
+      </form>
+</div>
+
+<div class="accordion-item mb-3 m-4">
+
+		<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+			data-bs-parent="#accordionExample">
+			<div class="accordion-body">
+
+				<p>{{comments.body}} </p>
+				{% for comment in comments %}
+				<div class="card mt-3">
+
+
+					<div class=" card-body">
+
+						<div class="w-100">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<h6 class="text-primary fw-bold mb-0">
+									<a href="{% url 'users:profile' comment.author  %}">@{{comment.author}}</a>
+									 </h6>
+										<p class="mb-0">{{comment.date}}</p>
+							</div>
+
+							<div data-expandable>
+								<p>{{comment.body}} </p>
+
+								<div class="d-flex justify-content-between align-items-center mt-3">
+									<div class="d-flex align-items-center">
+
+										  <form action="{% url 'main:like_comment' %}" method="POST" class='like-form' id='{{comment.id}}'>
+                                {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{comment.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{comment.id}}">
+                                        {% if profile not in comment.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{i.id}} me-5">{{comment.num_likes}}</strong>
+
+                            </form>
+										{% if request.user == comment.author %}
+											<small><a class="me-5" href="{% url 'main:comment_delete' product.id comment.id   %}"><i class=" bi bi-trash3"></i></a></small>
+										{% endif %}
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				{% endfor%}
+			</div>
+		</div>
+	</div>
+
+<div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+	<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+        {% for i in product.category.product_set.all %}
+        {% if product != i %}
+		<div class="col hp">
+			<div class="card h-100 shadow-sm">
+				<a href="#">
+
+					<img src="{{i.productimage_set.all.first.image.url}}" class="card-img-top" alt="product.title" />
+				</a>
+
+				<div class="label-top shadow-sm">
+					<a class="text-white" href="#">{{i.category}}</a>
+				</div>
+				<div class="card-body">
+					<div class="clearfix mb-3">
+						<span class="float-start badge rounded-pill bg-success">{{i.price}} com</span>
+						 {% if i.book_author %}
+                            <span class="float-end"><a href="#"
+                                    class="small text-muted text-uppercase aff-link">author: {{i.book_author}}</a>
+                            </span>
+                             {% endif%}
+					</div>
+					<h6 class="card-title">
+						<a href="{% url 'main:detail' product.id %}" class="title">{{i.title}}</a>
+					</h6>
+					<div class="clearfix mb-1">
+							<a href="{% url 'users:addremovesaved' i.id %}"><i class="bi bi-bookmark-fill"></i></a>
+                            <!--<span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>-->
+
+                            <span class="float-end">
+								 <form action="{% url 'main:like-store' %}" method="POST" class='like-form' id='{{i.id}}'>
+                                {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{i.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{i.id}}">
+                                        {% if user not in i.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{i.id}} me-3">{{i.num_likes}}</strong>
+
+                            </form>
+
+                            </span>
+                        </div>
+				</div>
+			</div>
+		</div>
+        {% endif %}
+		{% endfor %}
+	</div>
+</div>
+
+
+
+<script>const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);</script>
+
+<script src="{% static 'js/like_button.js'%}"></script>
+{% endblock content %}
