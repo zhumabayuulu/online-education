@@ -14,7 +14,7 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -81,7 +81,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-import  os, dj_database_url
+import os, dj_database_url
 
 
 # Database

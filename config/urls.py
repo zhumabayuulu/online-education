@@ -15,8 +15,9 @@ urlpatterns = [
                   path('chats/', include('chat.urls')),
                   path('blog_admin/', include('blog_admin.urls')),
                   path('blog_nature/', include('blog_nature.urls')),
-                #path('accounts/', include('django.contrib.auth.urls')),
                   path('accounts/', include('accounts.urls')),
 ]
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL , document_root = settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
