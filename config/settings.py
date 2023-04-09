@@ -1,21 +1,22 @@
 
 import os
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+env = environ.Env()
+environ.Env.read_env()
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&@et25736dh+l7_6*w*1@-(5szavhh9#j+gq*_%4op#n7yk%_='
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -80,19 +81,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+import  os, dj_database_url
+
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alma',
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': 'almanbet.bay'
-    }
+    'default': dj_database_url.parse(env('DATABASE_URL'))
 }
 
 
@@ -132,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (str(BASE_DIR.joinpath("static")),)
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 MEDIA_URL = 'media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath("media"))
 
