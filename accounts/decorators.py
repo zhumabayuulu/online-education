@@ -11,6 +11,6 @@ def allowed_groups(allowed_groups =[]):
                 if group.name in allowed_groups:
                     return view_func(request,*args,**kwargs)
             else:
-                return HttpResponse("accses denied!")
+                return HttpResponse("accsesssss denied!")
         return wrapper_func
     return decorator

@@ -30,7 +30,10 @@ ul {
     padding-left: initial !important;
     margin-bottom: 0rem !important;
 }
-
+.dropdown-menu{
+ max-height:300px;
+ overflow-y:scroll;
+ }
 </style>
 
 
@@ -123,11 +126,12 @@ ul {
                           the information<i class="bi bi-question-lg"></i>
                         </button></li>
                           <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{%url 'users:recently_viewed'%}">histori</a></li>
+                        <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{%url 'users:recently_viewed'%}">акыркы корулгондор</a></li>
                         <li><hr class="dropdown-divider" /></li>
                        {% for i in categories %}
                         <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{% url 'main:category' i.name %}">{{i.name}}</a></li>
                         {% endfor %}
+                          <li><hr class="dropdown-divider bg-light "></li>
                       </ul>
                     </div>
                 <!-- Button trigger modal -->
@@ -161,7 +165,10 @@ ul {
                       >
                         <i class='bx bxs-dashboard '></i><i class="bx bx-down-arrow-alt"></i>
                       </button>
-                      <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki" style="background-color:#fff;" >
+
+
+
+                     <ul class="dropdown-menu nami dropdown-menu-dark mt-4 laki" style="background-color:#fff;" >
                            <li><button type="button" class="btn dropdown-item fw-bold" style="color:#004953;" data-bs-toggle="modal" data-bs-target="#bloglearn">
                          the information<i class="bi bi-question-lg"></i>
                         </button></li>
@@ -173,6 +180,8 @@ ul {
                          <li><hr class="dropdown-divider bg-light "></li>
                         {% endfor %}
                       </ul>
+
+
                     </div>
             {% endif %}
                 {% if request.path == nature_page_url%}
