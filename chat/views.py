@@ -7,7 +7,7 @@ from django.shortcuts import render
 from accounts.models import Friend, CustomUser
 from .models import Chat
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def chat(request, username):
     receiver = CustomUser.objects.get(username=username)
     user = request.user
@@ -34,7 +34,7 @@ def chat(request, username):
     return render(request, 'chat/chat.html', {'receiver': receiver, 'friends': friends})
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def data(request, username):
     receiver = CustomUser.objects.get(username=username)
     sender = user = request.user
@@ -49,7 +49,7 @@ def data(request, username):
     return JsonResponse({"massages": list(massages.values())})
 
 
-@login_required(login_url='login')
+@login_required(login_url='users:login')
 def friends(request):
     user = request.user
     friends = set(Friend.objects.filter(user=user))
