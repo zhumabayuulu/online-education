@@ -17,7 +17,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ["https://m-sycamore.up.railway.app/"]
 
 # Application definition
 
@@ -45,6 +45,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
