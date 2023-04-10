@@ -17,7 +17,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool("DEBUG")
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://m-sycamore.up.railway.app/"]
+CSRF_TRUSTED_ORIGINS = ["https://m-sycamore.up.railway.app"]
 
 # Application definition
 
