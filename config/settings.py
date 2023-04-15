@@ -16,7 +16,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["164.90.229.162"]
 CSRF_TRUSTED_ORIGINS = ["https://m-sycamore.up.railway.app"]
 
 # Application definition
@@ -90,12 +90,12 @@ import os, dj_database_url
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.str("NAME"),
-        'USER': env.str('USER'),
-        'PASSWORD': env.str('PASSWORD'),
-        'HOST': env.str('HOST'),
-        'PORT': env.str("PORT"),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'manas',
+        'USER': 'almanbet',
+        'PASSWORD': 'almanbet.bay',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
