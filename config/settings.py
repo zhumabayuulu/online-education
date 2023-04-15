@@ -16,8 +16,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = ["164.90.229.162"]
-CSRF_TRUSTED_ORIGINS = ["https://m-sycamore.up.railway.app"]
+ALLOWED_HOSTS = ["207.154.229.84"]
 
 # Application definition
 
@@ -93,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'manas',
         'USER': 'almanbet',
-        'PASSWORD': 'almanbet.bay',
+        'PASSWORD': 'lokiloki00',
         'HOST': 'localhost',
         'PORT': '',
     }
