@@ -1,7 +1,6 @@
 
 import os
 from pathlib import Path
-import environ
 env = environ.Env(
     DEBUG=(bool,False)
 )
@@ -19,7 +18,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ["207.154.229.84"]
+ALLOWED_HOSTS = ["161.35.199.5"]
 
 # Application definition
 
@@ -91,10 +90,10 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DB_NAME'),
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD'),
-        'HOST': env('DB_HOST'),
+        'NAME': 'manas',
+        'USER': 'almanbet',
+        'PASSWORD': '0lmanBet.bay',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
