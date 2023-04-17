@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-&@et25736dh+l7_6*w*1@-(5szavhh9#j+gq*_%4op#n7yk%_=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG',)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["64.226.118.158"]
 
 # Application definition
 
@@ -89,9 +89,13 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'manas',
+        'USER': 'almanbet',
+        'PASSWORD': 'almanbet.bay',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
