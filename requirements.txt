@@ -19,7 +19,6 @@ Pillow==9.4.0
 pipenv==2022.3.28
 platformdirs==2.5.1
 product==0.1.1.1
-psycopg2==2.9.5
 psycopg2-binary==2.9.6
 rcssmin==1.1.1
 rjsmin==1.2.1
@@ -30,4 +29,3 @@ typing_extensions==4.5.0
 tzdata==2022.1
 virtualenv==20.14.0
 virtualenv-clone==0.5.7
-whitenoise==6.4.0
