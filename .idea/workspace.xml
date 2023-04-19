@@ -6,46 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="820d0468-000e-48fb-bdf4-2c777282b80a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/css/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/assets/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/admin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/button.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/card.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/chat.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/home.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/readbutton.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/secondary.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/store.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/store_detail.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/img/mainbenner.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/jquery-2.0.0.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/like_button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/mdb.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/mein.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/readbutton.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/js/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_alert.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_animation.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_author-box.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_avatar.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_button.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_card.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_layout.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_loading.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_tag-input.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_tag.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_typography.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_utilities.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/modules/_variables.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/staticfiles/uikit/styles/uikit.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
