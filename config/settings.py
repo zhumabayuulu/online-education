@@ -137,7 +137,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (str(BASE_DIR.joinpath("static")),)
 STATIC_ROOT = '/var/ww/public_html/static'
 MEDIA_URL = 'media/'
-MEDIA_ROOT = "/var/ww/public_html/"
+MEDIA_ROOT = "/var/ww/public_html/media"
 
 
 # Default primary key field type

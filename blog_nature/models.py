@@ -17,7 +17,7 @@ class Nature(models.Model):
     category = models.ForeignKey(NatureCategory, on_delete=models.CASCADE)
     address = models.CharField(max_length=150)
     video = models.FileField(upload_to="video/%y", blank=True, null=True, validators=[file_size])
-    image = models.ImageField(upload_to='product_images',blank=True, null=True,)
+    image = models.ImageField(upload_to='media/product_images',blank=True, null=True,)
     date = models.DateTimeField(auto_now_add=True)
     liked = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='liked')
 
