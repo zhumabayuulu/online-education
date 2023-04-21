@@ -1,0 +1,17 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n# !**/migrations/__init__.py
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision bb42ac67cc5fba7ab8be37f28ff13ee1f9af6801)
++++ b/.gitignore	(date 1682106666409)
+@@ -1,2 +1,4 @@
+-
++.env
++media
++.idea
+ # !**/migrations/__init__.py
+\ No newline at end of file
