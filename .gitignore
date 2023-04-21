@@ -1,3 +1,4 @@
-
+.env
+.idea
 media
 # !**/migrations/__init__.py
