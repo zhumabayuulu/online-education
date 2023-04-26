@@ -4,12 +4,12 @@
   <div class="container bottom top">
     <div class="row">
         <div class="col"></div>
-        <div class="col-10 mt-5 mb-5 ">
+        <div class="col-12 mt-5 mb-5 ">
             <h2>Signup here</h2>
             <form  method="post" >{% csrf_token %}
                 {{forms|crispy}}
-                <button type="submit" class="btn btn-primary" >Signup</button>
-                <a href=""> login here </a>
+                <button type="submit" class="btn btn-primary me-5" >kataluu</button>
+                <a class="btn btn-info mr-5" href="{% url 'users:login'%}"> login here </a>
             </form>
         </div>
         <div class="col"></div>

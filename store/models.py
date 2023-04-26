@@ -8,15 +8,23 @@ class Category(models.Model):
         return self.name
 
 
+class BookLanguage(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,  on_delete=models.CASCADE)
+    language = models.ForeignKey(BookLanguage, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    description = models.TextField(max_length=300,)
-    price = models.IntegerField()
+    description = models.CharField(max_length=100,blank=True,  null=True)
+    price = models.IntegerField(blank=True,  null=True)
+
     book_author = models.CharField(max_length=100, blank=True, )
     pdf = models.FileField(upload_to='books/pdfs/',blank=True,  null=True)
-    tg_username = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
     liked = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='like_store')
 

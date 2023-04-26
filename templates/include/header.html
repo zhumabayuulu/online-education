@@ -84,6 +84,7 @@ ul {
                          the information<i class="bi bi-question-lg"></i>
                         </button>
                           </li>
+                         {# <a class="btn btn-info " href="{% url 'password_change'%}">edit password</a>#}
 
                         {% for i in admin_category %}
                            <li><hr class="dropdown-divider bg-light "></li>
@@ -282,6 +283,7 @@ ul {
                 {% endif %}
                 <!-- enddropdown menu -->
 
+
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
@@ -297,17 +299,23 @@ ul {
                                 <span class="nav__name">M'LEARN</span>
                             </a>
                         </li>
+
                         <li class="nav__item">
+
                             <a href="{{message_page_url}}" class="nav__link {% if request.path == message_page_url%} active-link {% endif%}{% if request.path == discover_page_url%} active-link {% endif%}">
                                 <i class='bx bx-conversation  nav__icon'></i>
                                 <span class="nav__name">M'MESSAGE</span>
+
+
                             </a>
+
                         </li>
 
                         <li class="nav__item">
                             <a href="{{stor_page_url}}" class="nav__link {% if request.path == stor_page_url%} active-link {% endif%}{% if request.path == detail_page_url%} active-link {% endif%}">
                                 <i class='bx bxs-cart nav__icon'></i>
                                 <span class="nav__name">M'SHOP</span>
+
                             </a>
                         </li>
 
@@ -320,6 +328,9 @@ ul {
                         </li>
                     </ul>
                 </div>
+
+
+
                 <div class="dropdown nami">
                   <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 

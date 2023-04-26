@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% block title %}
-  E-Bazar  of @{{request.user}}
-{% load static %}
-{% endblock title %}
+   @{{request.user}}
 
+{% endblock title %}
+{% load static %}
 {% block content %}
 <style>
+.rrow{
+padding-right: calc(var(--bs-gutter-x) * )!important;
+    padding-left: calc(var(--bs-gutter-x) * )!important;
+    }
   .topend {
   position: absolute;
   bottom: 0px;
@@ -49,7 +53,7 @@ body {
 
     .g-4{--bs-gutter-x: 0rem!important;}
 </style>
-  <body class="  border-0 bd-example">
+  <body class="  ">
 
     <!-- Example Code -->
 
@@ -71,9 +75,9 @@ body {
 
      <div class="accordion-item">
         <div id="perfect" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">
+          <div>
             <link rel="stylesheet" href="{% static 'css/admin.css'%}">
-                <div class="row row-cols-1 row-cols-md-3 ">
+                <div class=" row rro row-cols-1 row-cols-md-3 ">
 
   <div class="col">
 {% for i in savedss %}
@@ -110,7 +114,7 @@ body {
                                     </a>
                                     {% endif %}
                                 </p>
-      <div class="card-bodyt">
+      <div class="card-body">
        <div class="d-flex justify-content-between align-items-center me-3 mb-0">
                   <div class="d-flex align-items-center mt-2  mb-0"style="margin-left:1rem;">
                    <p class="text-success"> <i class="bi bi-geo-alt-fill "></i> {{i.nature.address}}</p>
@@ -146,7 +150,7 @@ body {
 
       <div class="accordion-item">
       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
+        <div>
             <style>
 	.topricht {
   position: absolute;

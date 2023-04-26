@@ -40,7 +40,8 @@ body {
       <img src="{{ i.image.url }}" class="card__image" alt="Ho"/>
 		 {% endif%}
                         {% if i.video %}
-                            <video class="embed-responsive embed-responsive-16by9" controls="controls">
+
+                            <video controls="controls">
                                 <source src="{{i.video.url}}" type="video/mp4" />
                             </video>
                         {% endif%}

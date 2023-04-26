@@ -15,9 +15,8 @@ class AlmanAdmin(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     category = models.ForeignKey(AdminCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    summary = models.CharField(max_length=200, blank=True)
     body = models.TextField()
-    photo = models.ImageField(upload_to='images/', blank=True)
+    photo = models.ImageField(upload_to='media/images/', blank=True)
     date = models.DateTimeField(auto_now_add=True)
     liked = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='like_admin')
 

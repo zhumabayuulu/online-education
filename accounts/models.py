@@ -1,13 +1,13 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 class CustomUser(AbstractUser):
     bio = models.CharField(max_length=100, null=True, blank=True)
-    pic = models.ImageField(upload_to='profiles/', default="photo/avatar.svg")
+    pic = models.ImageField(upload_to='profiles/', default="media/photo/avatar.svg")
     is_verified = models.BooleanField(default=False)
     phone_number = models.CharField(max_length=12, null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
-    birthday = models.DateField(null=True, blank=True)
 
 
 class Friend(models.Model):
@@ -25,7 +25,6 @@ class SavedNature(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
 
-
     def __str__(self):
         return "Comment of " + str(self.author)
 
@@ -35,7 +34,6 @@ class Saved(models.Model):
     product = models.ForeignKey("store.Product", on_delete=models.CASCADE)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-
 
     def __str__(self):
         return "Comment of " + str(self.author)

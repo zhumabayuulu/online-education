@@ -7,7 +7,15 @@ class NewProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ( 'category','title', 'description','book_author', 'pdf', 'price','tg_username', )
+        fields = ( 'category','title',"description",'book_author','pdf', 'price', "language")
+        labels = {'category':'болум',
+                  'title':' китептин аты',
+                  "description":'китеп жонундо малымат жазыныз',
+                  'book_author':"Китептин авторлор:",
+                  'price':"Басы:(эгер бекер болсо жазу шарт эмес)",
+                  "language":"китеп жазылган тил",
+                  "images":"суротору",
+        }
 
 
     def save(self, request, commit=True):
@@ -22,4 +30,11 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ('category','title', 'description', 'price',  'tg_username','book_author', 'pdf',)
+        fields = ('category','title', 'price','book_author', 'pdf',)
+        labels = {'category': 'болум',
+                  'title': ' китеп жонундо кичине малымат',
+                  "description": 'китеп жонундо малымат',
+                  'book_author': "китептин автору",
+                  'price': "басы эгер бекер болсо жазуу шарт эмес",
+                  "images": "суротору",
+                  }

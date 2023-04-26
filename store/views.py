@@ -27,10 +27,15 @@ class IndexView(LoginRequiredMixin,View):
         return render(request, "store/store.html", {'products': products,})
 
 @login_required(login_url='users:login')
-@allowed_groups(['loki',])
+#@allowed_groups(['loki',])
 def new_product(request):
     if request.method == "GET":
         form = NewProductForm()
+        for f in form:
+            if f.label == "Images":
+                f.label = "китептин суротору"
+
+
         return render(request, 'store/product_new.html', {'form': form})
     elif request.method == "POST":
         form = NewProductForm(data=request.POST, files=request.FILES)
@@ -50,6 +55,10 @@ def product_updat(request, product_id):
     if request.user == product.author:
         if request.method == 'GET':
             form = ProductForm(instance=product)
+            for f in form:
+                if f.label == "Images":
+                    f.label = "китептин суротору"
+
             return render(request, 'store/product_update.html', {'form': form, 'pr': product})
         elif request.method == 'POST':
             form = ProductForm(instance=product, data=request.POST, files=request.FILES)

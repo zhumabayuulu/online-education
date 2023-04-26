@@ -26,7 +26,7 @@ urlpatterns = [
     path('test/<str:category_name>/category', TestView.as_view(), name='category'),
     # end category
     # like button url
-    path('like/', like_oku, name='like-oku'),
+    path('like-oku/', like_oku, name='like-oku'),
     path('like/', like_learn_detail, name='like-detail'),
     path('like_test/', like_test, name='like-test'),
     path('like_liki/', like_learn_comment, name='like_learn_comment'),

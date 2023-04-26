@@ -21,14 +21,26 @@ from django.db.models import Q
 
 class SignupView(UserPassesTestMixin, View):
     def get(self, request):
+        if request.method == "GET":
+            form = CustomUserCreationForm()
+            for f in form:
+                if f.label == "Password":
+                    f.label = "китептин суротору"
         return render(request, 'registration/signup.html', {'forms': CustomUserCreationForm()})
 
     def post(self, request):
         form = CustomUserCreationForm(data=request.POST)
+
+
         if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
             form.save()
             messages.success(request, 'Your account is successfully created.')
             return redirect('users:login')
+        else:
+            messages.info(request, "Document deleted.")
         return render(request, 'registration/signup.html', {'forms': form})
 
     def test_func(self):
@@ -86,7 +98,7 @@ class UpdateProfileView(LoginRequiredMixin, View):
 
     def get(self, request):
         form = CustomUserChangeForm(instance=request.user)
-        return render(request, 'registration/profile_update.html', {'fom': form})
+        return render(request, 'registration/profile_update.html', {'form': form})
 
     def post(self, request):
         form = CustomUserChangeForm(instance=request.user, data=request.POST, files=request.FILES)

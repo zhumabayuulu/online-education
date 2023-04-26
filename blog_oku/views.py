@@ -39,8 +39,6 @@ class BlogView(LoginRequiredMixin,View):
     def get(self, request,):
 
         bloglearn = BlogLearn.objects.all()
-
-
         q = request.GET.get('q',)
         if q:
             bloglearn = bloglearn.filter(description__icontains=q, )

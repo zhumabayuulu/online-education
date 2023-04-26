@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {%load static%}
-{% block title %}
-  E-bazar - Login
-{% endblock title %}
 
 {% block content %}
 
@@ -25,11 +22,11 @@ body {
     <div class="row">
         <div class="col"></div>
         <div class="col-12 mt-5 ">
-            <h2>Login here</h2>
+            <h2 class="mb-5 mt-5">Login here</h2>
             <form  method="post" >{% csrf_token %}
                 {{form|crispy}}
-                <button type="submit" class="btn btn-primary" >Login</button>
-                <a href="{% url 'users:register' %}"> signup </a>
+                <button type="submit" class="btn btn-primary me-5" >Login</button>
+                <a class="btn btn-info" href="{% url 'users:register' %}"> signup </a>
             </form>
         </div>
         <div class="col"></div>

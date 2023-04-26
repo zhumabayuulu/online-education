@@ -6,12 +6,15 @@ from .models import CustomUser, ContactForm
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = ("username", "email",)
+        fields = ("username","password1","password2")
+        labels = {
+            'username':"Колдонуучунун аты ",
+        }
 
 class  CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = CustomUser
-        fields = ("username", "first_name", "last_name", "pic", 'bio','birthday','address','phone_number')
+        fields = ("username", "first_name","pic", 'bio','phone_number')
 
 class ContactFormm(forms.ModelForm):
     class Meta :
