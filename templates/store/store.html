@@ -55,7 +55,7 @@
                                             </svg>
                                          </a>
                             {% endif%}
-                            <a class="mr-5 btn btn-primary">комментарийлер: <i class="bi bi-chat-text"></i> {{i.comments.count}}</a>
+                            <a class="mr-5 btn btn-primary btn-sm">комментарийлер: <i class="bi bi-chat-text"></i> {{i.comments.count}}</a>
                             <span class="float-end">
                                  <form action="{% url 'main:like-store' %}" method="POST" class='like-form' id='{{i.id}}'>
                                 {% csrf_token %}
@@ -81,9 +81,9 @@
 
         </div>
     </div>
-                  {#{% if request.user|in_group:'shopadd'%}
+                  {% if request.user|in_group:'shopadd'%}
                  {% include 'include/add_button.html'%}
-{% endif%}#}
+{% endif%}
 {% include 'include/add_button.html'%}
 
 <script src="{% static 'js/like_button.js'%}"></script>
