@@ -24,7 +24,7 @@ def NatureView(request ,):
     return render(request, "blog_nature/blog_nature.html", {'products': products,'savedss':savedss})
 
 
-class NatureCreateView(AllowedGroupsMixin,LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class NatureCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Nature
     template_name = 'blog_nature/blog_nature_add.html'
     fields = ('category', 'image', 'video','address',)
