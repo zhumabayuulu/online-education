@@ -3,7 +3,6 @@ from django.core.files.storage import FileSystemStorage
 from django.db.models import Q
 from django.shortcuts import render, redirect
 
-from accounts.decorators import allowed_groups
 from accounts.models import Saved
 from .forms import NewProductForm, ProductForm
 from .models import ProductImage, Product, Comment, LikeStore, LikeStoreComment, Category
