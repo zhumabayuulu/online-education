@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 from accounts.models import Friend, CustomUser
 from .models import Chat
-
+from django.shortcuts import get_object_or_404
 @login_required(login_url='users:login')
 def chat(request, username):
     receiver = CustomUser.objects.get(username=username)

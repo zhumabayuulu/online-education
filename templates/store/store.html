@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="{%static 'css/store.css'%}"}>
 
 
-<style>@media (min-width: 769px) and (max-width: 1400px) {.top{ margin-top:6rem !important; }</style>
+<style>@media (min-width: 769px) and (max-width: 1400px) {.top{ margin-top:6rem !important; }
+</style>
 
     <div class="container-fluid bg-trasparent top bottom my-4 p-3 mb-5" style="position: relative">
         <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
@@ -27,6 +28,9 @@
 
                     <div class="label-top shadow-sm">
                         <a class="text-white" href="#">{{i.category}}</a>
+                    </div>
+                     <div class="label-top-left shadow-sm">
+                        <a class="text-white" href="#">тили:{{i.language}}</a>
                     </div>
                     <div class="card-body">
                         <div class="clearfix mb-3">
@@ -55,7 +59,7 @@
                                             </svg>
                                          </a>
                             {% endif%}
-                            <a class="mr-5 btn btn-primary btn-sm">комментарийлер: <i class="bi bi-chat-text"></i> {{i.comments.count}}</a>
+                            <a class="mr-5 btn btn-primary btn-sm">comments: <i class="bi bi-chat-text"></i> {{i.comments.count}}</a>
                             <span class="float-end">
                                  <form action="{% url 'main:like-store' %}" method="POST" class='like-form' id='{{i.id}}'>
                                 {% csrf_token %}

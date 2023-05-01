@@ -5,7 +5,7 @@
 	  xmlns="http://www.w3.org/1999/html">
 <link rel="stylesheet" href="{%static 'css/store.css'%}"}>
 <link rel="stylesheet" href="{%static 'css/store_detail.css'%}"}>
-<div class = "card-wrapper mt-5 m-3">
+<div class = "card-wrapper mt-5 m-3 bottom">
   <div class = "cardd">
     <!-- card left -->
     <div class = "product-imgs">
@@ -39,9 +39,7 @@
               </div>
             </div>
 
- <div class = "img-select">
 
-      </div>
 
 
         </div>
@@ -54,7 +52,7 @@
 	<div class="product-price mb-0">
 		<!--
 		<p class="last-price">Old Price: <span>$257.00</span></p>-->
-		<p> китептин атыЖ<span>{{product.title}}</span></p>
+		<p> китептин аты:<span>{{product.title}}</span></p>
 		{% if product.price == none%}
 		<p>басы: <span>бекер</span></p>
 		{%else%}
@@ -146,7 +144,7 @@
 			</div>
 		</div>
 	</div>
-
+{% if product.category%}
 <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
 	<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
         {% for i in product.category.product_set.all %}
@@ -203,6 +201,7 @@
 	</div>
 </div>
 
+{%endif%}
 
 
 <script>const imgs = document.querySelectorAll('.img-select a');

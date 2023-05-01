@@ -77,7 +77,7 @@ body {
 
   <div class="col">
 {% for i in savedss %}
-    <div class="card mt-3 mb-3">
+    <div class=" card mt-3 mb-3" style="width: clamp(22rem, calc(3rem + 2vw), 22rem);">
 		 {% if i.nature.image %}
       <img src="{{i.nature.image.url}}" class="card__image" alt="Ho"/>
 		 {% endif%}
@@ -159,7 +159,7 @@ body {
 <link rel="stylesheet" href="{% static 'css/admin.css'%}">
             <div class="container mb-5">
     {% for i in saveds_admin %}
-	<div class="card ">
+	<div class=" ">
 		<div class="card__header">
                         {% if i.almanadmin.photo %}
 			<img src="{{ i.almanadmin.photo.url }}" alt="card__image" class="card__image" width="600">

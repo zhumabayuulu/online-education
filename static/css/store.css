@@ -28,7 +28,6 @@
     max-width: 1400px;
 
 }
-
 .card {
     background: #fff;
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
@@ -81,6 +80,18 @@
     color: #fff;
     top: 8px;
     right: 8px;
+    padding: 5px 10px 5px 10px;
+    font-size: .7rem;
+    font-weight: 600;s
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+.label-top-left {
+    position: absolute;
+    background-color: #26cd1f;
+    color: #fff;
+    top: 8px;
+    left: 8px;
     padding: 5px 10px 5px 10px;
     font-size: .7rem;
     font-weight: 600;

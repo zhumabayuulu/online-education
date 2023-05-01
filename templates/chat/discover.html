@@ -4,17 +4,10 @@
 {% load humanize %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/secondary.css' %}">
-<style>
-    .linda{
-    margin-left:2rem;}
-</style>
-
-
-
 <body class=" m-3 border-0 bd-example">
 
     <!-- Example Code -->
-    <div class="row d-flex justify-content-center mt-5">
+    <div class=" d-flex justify-content-center mt-5">
         {% if user.is_authenticated %}
     <div class="col-md-8 col-lg-6">
         <h1 class="mt-4 linda"><a href="{% url 'chat:haus'%}" class=" ml-0 me-4">

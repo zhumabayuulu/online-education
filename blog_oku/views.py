@@ -184,7 +184,7 @@ def new_question(request,test_id):
             form = QuestionForm(data=request.POST)
             if form.is_valid:
                 form.save(test_id)
-                if form.cleaned_data['submit_and_exit']:
+                if form.cleaned_data['болот_жетишту']:
                     return redirect('okuu:list_test')     #okuu:index
                 return redirect('okuu:new_question',test.id)
         return render(request,'blog_oku/test/new_question.html',{'form':form,'test':test})

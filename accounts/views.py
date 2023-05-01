@@ -208,8 +208,8 @@ def contactForm(request):
     form = ContactFormm(request.POST,)
     if request.method == 'POST' and form.is_valid():
         form.save()
-
-        return HttpResponse('aloo')
+        messages.success(request, "биз менен байланышка чыканынызга рахмат адистер сиз менен байланышат")
+        return redirect("adminn")
     return render(request,'registration/contact_form.html')
 
 @login_required

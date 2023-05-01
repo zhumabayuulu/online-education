@@ -25,8 +25,8 @@
 
 <body>
 
- <section style="background-color: #eee;">
-    <div class="container my-5 py-5">
+ <section >
+    <div class="container my-3 py-5">
       <div class="row d-flex justify-content-center">
         <div class="col-md-12 col-lg-10 col-xl-8">
           <div class="card">
@@ -35,20 +35,25 @@
                 <img class="rounded-circle shadow-1-strong me-3"
                   src="{{request.user.pic.url}}" alt="avatar" width="35"
                   height="35" />
-                <div>
-                  <h6 class="fs-6 mb-1 badge bg-success">#{{bloglearn.category}}</h6>
-                  <p class="text-muted small mb-0 me-5">
-                    {{bloglearn.date}}
 
-                </div>
-                  <div> {% if request.user == bloglearn.author %}
+                    <div>
+                  <h6 class="fs-6 mb-1 badge bg-success me-5">#{{bloglearn.category}}</h6>
+
+                        <!-- delete button-->
+                        {% if request.user == bloglearn.author %}
                       <a href="{% url 'okuu:bloglearn_delete' bloglearn.id %}" class="link-muted me-4"><i class="bi bi-trash3"></i></i></a>
 				 <a class="btn "  href="{% url 'okuu:article_edit' bloglearn.id%}">
 				  <i class="bi bi-pen"></i>
 			  	</a>
 				  {% endif %}
+
+                <!-- end button delete-->
+                  <p class="text-muted small mb-0 me-5">
+                    {{bloglearn.date}}
                   </p>
                 </div>
+
+
               </div>
               <div class="img-wrap">
                 {% if bloglearn.image %}
@@ -77,7 +82,7 @@
 
                <form action="{% url 'okuu:blog_comment_new' bloglearn.id %}" method="post" class="input-group">{% csrf_token%}
           <input class="form-control" name="body" type="text" placeholder="сиздин жооп ..." aria-describedby="'button-addon" >
-          <button class="btn btn-outline-success" type="submit" id="button-addon"><i class="bi bi-send-plus"></i></button>
+          <button class="btn btn-outline-success" type="submit" id="button-addon"> жоноту <i class="bi bi-send-plus"></i></button>
       </form>
           </div>
 

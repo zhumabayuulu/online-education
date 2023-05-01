@@ -11,8 +11,8 @@
               <form method="post" enctype="multipart/form-data">{% csrf_token %}
         {{ form.media }}
         {{ form|crispy }}
-    <button class="btn btn-info ml-2" type="submit">Saqlash</button>
-                  <a class="btn btn-danger me-3" href="{% url 'article_delete' object.id  %}"> dekete</a>
+    <button class="btn btn-info ml-2" type="submit">сактоо</button>
+                  <a class="btn btn-danger me-3" href="{% url 'article_delete' object.id  %}"> очуру</a>
                    <a  href="{% url 'adminn' %}">  артка кайтуу</a>
     </form>
         </div>
