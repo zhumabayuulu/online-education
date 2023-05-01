@@ -10,8 +10,6 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView
-
-from accounts.mixins import AllowedGroupsMixin
 from accounts.models import CustomUser, SavedNature
 from blog_nature.forms import NatureForm
 from blog_nature.models import Nature, NatureCategory, Like
@@ -27,7 +25,6 @@ def NatureView(request ,):
 
 
 class NatureCreateView(AllowedGroupsMixin,LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    allowed_groups = ['loki',]
     model = Nature
     template_name = 'blog_nature/blog_nature_add.html'
     fields = ('category', 'image', 'video','address',)
