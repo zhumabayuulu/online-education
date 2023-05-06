@@ -51,7 +51,7 @@ ul {
         <!--=============== HEADER ===============-->
         <header class="headerr" id="header">
             <nav class="navv containerr">
-                <a href="#" class="nav__logo "><i class= 'bx bxs-graduation'></i> M'sycamore</a>
+                <a href="#" class="nav__logo "><i class= 'bx bxs-graduation'></i> Msycamore</a>
                 <!-- dropdown menu -->
             {% if request.path == admin_page_url %}
                  <div>
@@ -64,7 +64,7 @@ ul {
             <li>
               <form class="mr-3 me-3 d-flex" role="search">
               <input class="form-control me-3 mr-3" name="q" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit">издоо</button>
             </form></li>
               </li>
       </ul>
@@ -106,7 +106,7 @@ ul {
             <li>
               <form  class="mr-3 me-3 d-flex" role="search">
               <input class="form-control me-3 mr-3"name="q" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit">издоо</button>
             </form>
               </li>
       </ul>
@@ -128,8 +128,9 @@ ul {
                         </button></li>
                           <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{%url 'users:recently_viewed'%}">акыркы корулгондор</a></li>
-                        <li><hr class="dropdown-divider" /></li>
+
                        {% for i in categories %}
+                          <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item fw-bold" style="color:#004953;" href="{% url 'main:category' i.name %}">{{i.name}}</a></li>
                         {% endfor %}
                           <li><hr class="dropdown-divider bg-light "></li>
@@ -152,7 +153,7 @@ ul {
             <li>
               <form class="mr-3 me-3 d-flex" role="search">
               <input class="form-control me-3 mr-3"name="q" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit">издоо</button>
             </form>
               </li>
       </ul>
@@ -216,10 +217,10 @@ ul {
                           the information<i class="bi bi-question-lg"></i>
                         </button>
                           </li>
-                        <li><hr class="dropdown-divider" /></li>
-
                        {% for i in nature_category %}
+                           <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item fw-bold" style="color:#004953; " href="{% url 'nature:nature_category' i.name %}">#{{i.name}}</a></li>
+                           <li><hr class="dropdown-divider" /></li>
                         {% endfor %}
                       </ul>
                     </div>
@@ -236,7 +237,7 @@ ul {
             <li>
               <form class="mr-3 me-3 d-flex" role="search">
               <input class="form-control me-3 mr-3" name="q" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit">издоо</button>
             </form></li>
               </li>
       </ul>
@@ -275,7 +276,7 @@ ul {
             <li>
               <form class="mr-3 me-3 d-flex" role="search">
               <input class="form-control me-3 mr-3" name="q" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
+              <button class="btn btn-outline-success" type="submit">издоо</button>
             </form></li>
               </li>
       </ul>
