@@ -222,3 +222,4 @@ def discover(request):
         users = CustomUser.objects.all().order_by('-last_login')
 
     return render(request, 'chat/discover.html', {'users': users})
+

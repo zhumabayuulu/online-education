@@ -7,6 +7,10 @@ from accounts.models import CustomUser
 
 
 # Create your models here.
+class ObjectCategory(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.name
 
 class LearnCategory(models.Model):
     name = models.CharField(max_length=20)
@@ -18,6 +22,7 @@ class LearnCategory(models.Model):
 class BlogLearn(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     category = models.ForeignKey(LearnCategory, on_delete=models.CASCADE)
+    object_category = models.ForeignKey(ObjectCategory,on_delete=models.CASCADE)
     description = models.TextField()
     image = models.ImageField(upload_to='product_images', blank=True,null=True)
     date = models.DateTimeField(auto_now_add=True)

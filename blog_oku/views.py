@@ -26,7 +26,7 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class OkuCreateView(LoginRequiredMixin,UserPassesTestMixin, CreateView):
     model = BlogLearn
     template_name = 'blog_oku/blog_oku_add.html'
-    fields = ('category','image','description')
+    fields = ('category',"object_category",'image','description',)
     success_url = reverse_lazy('okuu:learn_view')
 
     def form_valid(self, form):

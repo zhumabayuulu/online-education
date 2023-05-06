@@ -5,50 +5,7 @@
 {% endblock title %}
 {% load static %}
 {% block content %}
-<style>
-  .topend {
-  position: absolute;
-  bottom: 0px;
-  top:8px;
-
-  right: 2rem;
-  font-size: 15px;
-}
-    .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
-
-    .alik{
-      margin-top: -1rem;
-      margin-left:0rem
-
-    }
-
-  </style>
- <style>
-.topimg {
-  position: absolute;
-  top: 0px;
-  left: 0rem;
-  font-size: 15px;
-  color :#fff
-}
-.topedit {
-  position: absolute !important;
-  top: 0px !important;
-  right: 0rem !important;
-  font-size: 15px;
-  color :#fff
-}
-
-body {
-    font-family: "Quicksand", sans-serif;
-    display: grid;
-    place-items: center;
-    background: #7f7fd5;
-
-}
-
-    .g-4{--bs-gutter-x: 0rem!important;}
-</style>
+<link rel="stylesheet" href="{% static 'css/savedsadmin.css'%}">
   <body>
 
     <!-- Example Code -->
@@ -72,7 +29,6 @@ body {
      <div class="accordion-item">
         <div id="perfect" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
           <div>
-            <link rel="stylesheet" href="{% static 'css/admin.css'%}">
                 <div class=" row  row-cols-1 row-cols-md-3 " style="--bs-gutter-x: 0rem!important;">
 
   <div class="col">
@@ -86,13 +42,13 @@ body {
                                 <source src="{{i.nature.video.url}}" type="video/mp4" />
                             </video>
                         {% endif%}
-		 <div class="d-flex flex-start align-items-center mt-0 topimg">
+		                <div class="d-flex flex-start align-items-center mt-0 topimg">
                             <img class="rounded-circle shadow-1-strong me-1 mr-0"
-                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="28" height="28" />
+                                src="{{i.nature.author.pic.url}}" alt="avatar" width="28" height="28" />
                             <div class="lko">
                                 <p class="mb-0">
                                     <a class="mb-0 mt-0 font-monospace small fs-6 " style="color:#fff;" href="{% url 'users:profile' i.author.username  %}">@{{i.author}}
-                                        <span class="small"> <i class="bi bi-calendar-check"></i> {{ i.date|date:'Y-m-d'}}</span>
+                                        <span class="small"> <i class="bi bi-calendar-check"></i> {{ i.nature.date|date:'Y-m-d'}}</span>
                                     </a>
                                 </p>
 
@@ -115,7 +71,7 @@ body {
                   <div class="d-flex align-items-center mt-2  mb-0"style="margin-left:1rem;">
                    <p class="text-success"> <i class="bi bi-geo-alt-fill "></i> {{i.nature.address}}</p>
                   </div>
-                  <form action="{% url 'nature:like-post'%}" method="POST" class='like-form' id='{{i.id}} '>
+                  <form action="{% url 'nature:like-post'%}" method="POST" class='like-form' id='{{i.nature.id}} '>
                               {% csrf_token %}
 
                                 <input type="hidden" name="post_id" value={{i.nature.id}}>
@@ -128,7 +84,7 @@ body {
                                     </button>
                                      <strong class="like-count{{i.nature.id}} me-3">{{i.nature.num_likes}}</strong>
 									<span>
-										<a href="{% url 'users:naturesaved' i.id %}" ><i class="bi bi-bookmark"></i></a>
+										<a href="{% url 'users:naturesaved' i.nature.id %}" ><i class="bi bi-bookmark"></i></a>
 									</span>
 
                             </form>
@@ -147,27 +103,17 @@ body {
       <div class="accordion-item">
       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
         <div>
-            <style>
-	.topricht {
-  position: absolute;
-  top: 0px;
-  right: 0rem;
-  font-size: 15px;
-  color :#fff
-}
-</style>
-<link rel="stylesheet" href="{% static 'css/admin.css'%}">
-            <div class="container mb-5">
-    {% for i in saveds_admin %}
-	<div class=" ">
-		<div class="card__header">
-                        {% if i.almanadmin.photo %}
-			<img src="{{ i.almanadmin.photo.url }}" alt="card__image" class="card__image" width="600">
+           <div class="containerrr mb-0 bottom">
+{% for article in saveds_admin %}
+	<div class="cardd mt-2 mb-0">
+		<div class="card__headerr">
+			{% if article.almanadmin.photo %}
+			<img src="{{ article.almanadmin.photo.url }}" alt="card__imagee" class="card__imagee"  width="600">
             {%  endif %}
 
-			 <div class="card-img-overlayy">
-				  {% if request.user == product.author %}
-				 <a class="btn topricht" href="{% url 'article_edit' i.almanadmin.id%}">
+			 <div class="card-img-topp">
+				  {% if request.user == article.almanadmin.author %}
+				 <a class="btn topricht" href="{% url 'article_edit' article.almanadmin.id%}">
 				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
 				 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
 				</svg>
@@ -175,36 +121,53 @@ body {
 				  {% endif %}
   			</div>
 		</div>
-		<div class="card__body">
-			<span class="tag tag-blue ">{{i.almanadmin.category}}</span>
-			<h4 style="margin-bottom:0rem;">{{ i.almanadmin.title }}</h4>
-			<a href="{% url 'users:adminsaved' i.almanadmin.id %}"><i class="bi bi-bookmark-fill">;lkoijhu</i></a>
-			<p style="margin-bottom: 0rem;">{{ i.almanadmin.body }}</p>
-		</div>
-		<div class="  card__footer">
-			<div class="user">
-				<img src="https://i.pravatar.cc/40?img=1" alt="user__image" class="user__image">
-				<div class="user__info me-5">
-					<h6 style="
-                      position: absolute;
-                      bottom: 1rem;
-                      left: 4rem;
-                      font-size: 15px;
-                    ">
-						<a href="{% url 'users:profile' i.almanadmin.author.username  %}">@{{i.almanadmin.author}}</a></h6>
-				</div>
-				<div class="user__info" style="
-                      position: absolute;
-                      bottom: 2rem;
-                      right: 1rem;
-                      font-size: 15px;
-                    "><small> {{ i.almanadmin.date }}</small></div>
+		<div class="card__bodyy">
+			<div class="row mt-0">
+				<div class="col-7"><small class="tagg tag-bluee  fs-6"># {{article.almanadmin.category}} </small></div>
+			<div class="col-5"><small class="tagg tag-redd "><i class="bi bi-calendar2-check"></i> {{ article.almanadmin.date|date:'Y-m-d' }}</small></div>
+			</div>
+			<h4 style="margin-bottom:0rem;">{{ article.almanadmin.title }}</h4>
 
+			<p style="margin-bottom: 0rem;">{{ article.almanadmin.body }}</p>
+		</div>
+		<div class="  card__footerr">
+			<div class="userr">
+				<img src="{{article.almanadmin.author.pic.url}}" alt="user__image" class="user__imagee" width="40" height="40">
+				<div class="user__infoo me-5">
+					<h6 >
+						<a href="{% url 'users:profile' article.author.username  %}">@{{article.almanadmin.author}}</a></h6>
+				</div>
+
+				<div>
+					<form action="{% url 'like-postt'%}" method="POST" class='like-form' id='{{article.almanadmin.id}} '>
+                              {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{article.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{article.almanadmin.id}}">
+                                        {% if user not in article.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{article.almanadmin.id}} me-3">{{article.num_likes}}</strong>
+									<span>
+											 {% if request.user == article.almanadmin.author %}
+                  							{% else%}
+										 <a href="{% url 'users:adminsaved' article.almanadmin.id %}" >
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+</svg>
+										 </a>
+										{% endif %}
+
+									</span>
+                            </form>
 			</div>
 		</div>
 	</div>
 
-	{% endfor %}
+</div>{% endfor %}
 
 </div>
         </div>
@@ -214,20 +177,43 @@ body {
 
       <div class="accordion-item">
         <div id="test" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div>
+          <div class="mt-4">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-                {% for a in testsaveds %}
+                {% for test in testsaveds %}
                 <div class="col">
 
-                    <div class="card border-success mb-3" style="">
-                        <div class="card-header bg-transparent border-success">category :{{a.test.category}}</div>
-                        <div class="card-body text-success">
-                            <h5 class="card-title">{{a.test.title}}</h5>
-                            <p class="card-text"> <p class="card-text">details: There are <strong>{{a.test.question_set.all.count}}</strong>questions.</p></p>
-                        </div>
+                    <div class="card border-success mb-3" style="width: clamp(21rem, calc(3rem + 2vw), 22rem)">
+                         <div class="card-header bg-transparent border-success">болум :{{test.test.category}}</div>
+                <div class="card-body text-success">
+                    <p class="card-title">{{test.test.title}}</p>
+                    <p class="card-text"> <p class="card-text">малымат: баары <strong>{{test.test.question_set.all.count}}</strong>суроо.</p></p>
+                    <a>тести тузгон адам <span>@{{ test.test.author}}</span></a>
+                    <a class="btn btn-primary btn-lgs  float-end" href="{% url 'okuu:ready_to_test' test.id%}">test</a>
+                </div>
                         <div class="card-footer bg-transparent border-success">
-                        <a class="btn btn-primary btn-lgs me-5" href="{% url 'okuu:ready_to_test' a.id%}">test</a>
-                            <a href="{% url 'users:test_saved' a.id %}">l<i class="bi bi-bookmark-fill"></i></a>
+                        {% if request.user == test.test.author %}
+                  {% else%}
+                        <a href="{% url 'users:test_saved' test.test.id %}"  class=" float-left">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            </svg>
+                        </a>
+
+                  {% endif%}
+                     <form action="{% url 'okuu:like-test' %}" method="POST" class='like-form float-end' id='{{test.test.id}}'>
+                                {% csrf_token %}
+
+                                <input type="hidden" name="post_id" value={{test.test.id}}>
+                                    <button type="submit" class="btn btn-outline-success btn-sm like-btn{{test.test.id}}">
+                                        {% if user not in test.test.liked.all %}
+                                            Like
+                                        {% else %}
+                                            Unlike
+                                        {% endif %}
+                                    </button>
+                                     <strong class="like-count{{test.test.id}} me-3">{{test.test.num_likes}}</strong>
+
+                            </form>
                         </div>
                     </div>
 
@@ -243,25 +229,25 @@ body {
 
     <div class="accordion-item">
       <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        <div>
-             {% for i in learn %}
-        <div class="card mt-3  text-dark">
+
+        <div class="container mt-5"  style="width: clamp(22rem, calc(3rem + 2vw), 22rem);"> <!-- my-5 py-5-->
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 col-lg-10">
+          {% for i in learn %}
+        <div class="card mt-3">
           <div class="card-body ">
                  <div class="d-flex align-items-center mb-0">
                       <img class="rounded-circle shadow-1-strong me-2"
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="30"
+                src="{{i.author.pic.url}}" alt="avatar" width="30"
                 height="30" />
-                      <h6 class="fw-bold mb-1">{{i.bloglearn.category}}</h6>
+                     <h6 class="fs-6 mb-1 badge bg-info me-1">#{{i.bloglearn.category}}</h6><h6 class="fs-6 mb-1 badge bg-success me-2">#{{i.bloglearn.object_category}}</h6>
+
                  </div>
                 <div class="d-flex align-items-center mb-3">
-                  <p class="mb-0">
-                    {{i.bloglearn.date}}
+                  <p class="mb-0 me-4">
+                    {{i.date}}
                   </p>
-                     {% if request.user == i.author %}
-                  <a href="{% url 'okuu:article_edit' i.id%}" class="link-muted me-4"><i class="fas fa-pencil-alt ms-2"></i></a>
-                  <a href="{% url 'okuu:bloglearn_delete' i.id %}" class="link-muted me-4"><i class="bi bi-trash3"></i></i></a>
-                    {% endif%}
-                    {% if  i.bloglearn.image %}
+                      {% if  i.image %}
                   <a href="#!" class="link-muted"><i class="bi bi-images"></i></a>
                     {% endif %}
                 </div>
@@ -270,10 +256,10 @@ body {
                 </p>
               <div class="d-flex justify-content-between align-items-center mt-3">
                   <div class="d-flex align-items-center">
-                      <form action="{% url 'nature:like-post'%}" method="POST" class='like-form' id='{{i.bloglearn.id}} '>
+                      <form action="{% url 'okuu:like-oku'%}" method="POST" class='like-form' id='{{i.id}} '>
                               {% csrf_token %}
 
-                                <input type="hidden" name="post_id" value={{i.bloglearn.id}}>
+                                <input type="hidden" name="post_id" value={{i.id}}>
                                     <button type="submit" class="btn btn-outline-success btn-sm like-btn{{i.id}}">
                                         {% if user not in i.bloglearn.liked.all %}
                                             Like
@@ -281,18 +267,27 @@ body {
                                             Unlike
                                         {% endif %}
                                     </button>
-                                     <strong class="like-count{{i.bloglearn.id}} me-3">{{i.bloglearn.num_likes}}</strong>
+                                     <strong class="like-count{{i.id}} me-5">{{i.bloglearn.num_likes}}</strong>
 
                             </form>
-                    <a href="#!" class="link-muted me-2"><i class="far fa-comment-dots me-1"></i>158</a>
+                    <a href="{% url 'okuu:learn_detail' i.id%}" class=" me-2"><i class="far fa-comment-dots me-1"></i>{{i.bloglearn.comments.count}}</a>
 
                   </div>
-                  <a href="{% url 'okuu:learn_detail' i.id%}" class="link-muted"><i class="fas fa-reply me-1"></i> жооп беруу</a>
-                  <a href="{% url 'users:naturesaved' i.id %}" ><i class="bi bi-bookmark"></i></a>
+                  <a href="{% url 'okuu:learn_detail' i.id%}" class="btn btn-outline-primary btn-sm" data-mdb-ripple-color="dark"> жооп беруу</a>
+
+                             <a href="{% url 'users:learnsaved' i.id %}" >
+                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                                  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                </svg>
+                             </a>
+
+
                 </div>
               </div>
           </div>{% endfor%}
-          </div>
+      </div>
+    </div>
+  </div>
         </div>
       </div>
 
@@ -302,52 +297,65 @@ body {
         <div>
 
             <link rel="stylesheet" href="{%static 'css/store.css'%}"}>
-            <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
+            <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;width: clamp(22rem, calc(3rem + 2vw), 22rem)">
                 <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
                     {% for i in saveds %}
                     <div class="col hp">
                         <div class="card h-100 shadow-sm">
                             <a href="{% url 'main:detail' i.product.id%}">
                                 {% if i.product.productimage_set.exists %}
-                <img height="200" class=" card-img-top" src="{{i.product.productimage_set.all.first.image.url}}" alt="">
-                {% else %}
-                <img height="200" class=" card-img-top" src="images/14pro2.jfif" alt="">
-                {% endif %}
+                                <img height="200" class=" card-img-top" src="{{i.product.productimage_set.all.first.image.url}}" alt="">
+                                {% else %}
+                                <img height="200" class=" card-img-top" src="images/14pro2.jfif" alt="">
+                                {% endif %}
                             </a>
 
                             <div class="label-top shadow-sm">
                                 <a class="text-white" href="#">{{i.product.category}}</a>
                             </div>
+                              <div class="label-top-left shadow-sm">
+                        <a class="text-white" href="#">тили:{{i.product.language}}</a>
+                    </div>
                             <div class="card-body">
                                 <div class="clearfix mb-3">
-                                    <span class="float-start badge rounded-pill bg-success"> {{i.product.price}}</span>com
-
-                                   {% if i.book_author %}
+                                     {% if i.price == none %}
+                            <span class="float-start badge rounded-pill bg-success"> бекер</span>
+                            {% else%}
+                            <span class="float-start badge rounded-pill bg-success">{{i.product.price}}</span> com
+                            {% endif%}
+                              {% if i.book_author %}
                             <span class="float-end"><a href="#"
-                                    class="small text-muted text-uppercase aff-link">author: {{i.book_author}}</a>
+                                    class="small text-muted text-uppercase aff-link">автор: {{i.product.book_author}}</a>
                             </span>
                              {% endif%}
                                 </div>
                                 <h6 class="card-title">
-                                   <a href="{% url 'main:detail' i.id%}" class="title">{{i.product.title}}</a>
+                                   <a href="{% url 'main:detail' i.product.id%}" class="title">{{i.product.title}}</a>
                                 </h6>
                                 <div class="clearfix mb-1">
-                                    <a href="{% url 'users:addremovesaved' i.product.id %}"><i class="bi bi-bookmark-fill"></i></a>
-                                    <!--<span class="float-start"><a href="#"><i class="fas fa-question-circle"></i></a></span>-->
+                                   {% if request.user == i.product.author %}
+                              {% else%}
 
-                                     <span class="float-end">
-                                 <form action="{% url 'main:like-store' %}" method="POST" class='like-form' id='{{i.id}}'>
+                                         <a href="{% url 'users:addremovesaved' i.product.id %}" class="me-3" >
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                            </svg>
+                                         </a>
+                            {% endif%}
+                            <a class="mr-5 btn btn-primary btn-sm">comments: <i class="bi bi-chat-text"></i> {{i.product.comments.count}}</a>
+                            <span class="float-end">
+                                 <form action="{% url 'main:like-store' %}" method="POST" class='like-form' id='{{i.product.id}}'>
                                 {% csrf_token %}
 
-                                <input type="hidden" name="post_id" value={{i.id}}>
+                                <input type="hidden" name="post_id" value={{i.product.id}}>
                                     <button type="submit" class="btn btn-outline-success btn-sm like-btn{{i.id}}">
-                                        {% if user not in i.liked.all %}
+                                        {% if user not in i.product.liked.all %}
                                             Like
                                         {% else %}
                                             Unlike
                                         {% endif %}
                                     </button>
-                                     <strong class="like-count{{i.id}} me-3">{{i.num_likes}}</strong>
+                                     <strong class="like-count{{i.product.id}} me-3">{{i.product.num_likes}}</strong>
 
                             </form>
 

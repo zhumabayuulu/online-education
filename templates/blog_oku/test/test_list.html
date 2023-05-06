@@ -16,9 +16,9 @@
                 <div class="card-header bg-transparent border-success">category :{{test.category}}</div>
                 <div class="card-body text-success">
                     <h5 class="card-title">{{test.title}}</h5>
-                    <p class="card-text"> <p class="card-text">details: There are <strong>{{test.question_set.all.count}}</strong>questions.</p></p>
-                    <a>тести тузгон адам <span>@{{ test.author}}</span></a>
-                    <a class="btn btn-primary btn-lgs  float-end" href="{% url 'okuu:ready_to_test' test.id%}">test</a>
+                    <p class="card-text"> <p class="card-text">маллымат бары{{test.question_set.all.count}}</strong> суроо</p></p>
+                    <a>Тести тузгон адам <span>@{{ test.author}}</span></a>
+                    <a class="btn btn-primary btn-lgs  float-end" href="{% url 'okuu:ready_to_test' test.id%}">ТЕСТ</a>
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     {% if request.user == test.author %}
@@ -55,6 +55,5 @@
      {% if request.user|in_group:'testadd'%}
                  {% include 'include/add_button.html'%}
 {% endif%}
-{% include 'include/add_button.html'%}
     <script src="{% static 'js/like_button.js'%}"></script>
 {%endblock content%}

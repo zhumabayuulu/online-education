@@ -19,37 +19,6 @@
 
 
   <!-- Start your project here-->
-  <style>
-  .topend {
-  position: absolute;
-  bottom: 0px;
-  top:8px;
-
-  right: 2rem;
-  font-size: 15px;
-}
-.topedit {
-  position: absolute;
-  bottom: 0px;
-  top:1rem;
-
-  right: 2rem;
-  font-size: 15px;
-}
-.bottom {
-  bottom: 10rem;
-}
-    .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
-
-    .alik{
-      margin-top: -1rem;
-      margin-left:0rem
-
-    }
-    .alok{
-      margin-right: 0rem;
-    }
-  </style>
 <section  class="top bottom" style="">
   <div class="container mt-5"> <!-- my-5 py-5-->
     <div class="row d-flex justify-content-center">
@@ -61,19 +30,20 @@
                       <img class="rounded-circle shadow-1-strong me-2"
                 src="{{i.author.pic.url}}" alt="avatar" width="30"
                 height="30" />
-                      <h6 class="fs-6 mb-1 badge bg-info me-5">#{{i.category}}</h6>
-                       {% if request.user == i.author %}
+                     <h6 class="fs-6 mb-1 badge bg-info me-1">#{{i.category}}</h6><h6 class="fs-6 mb-1 badge bg-success me-2">#{{i.object_category}}</h6>
+
+                 </div>
+                <div class="d-flex align-items-center mb-3">
+                  <p class="mb-0 me-4">
+                    {{i.date}}
+                  </p>
+                     {% if request.user == i.author %}
                   <a href="{% url 'okuu:article_edit' i.id%}" class="link-muted me-4"><i class="fas fa-pencil-alt ms-2"></i></a>
                   <a href="{% url 'okuu:bloglearn_delete' i.id %}" class="link-muted me-4"><i class="bi bi-trash3"></i></i></a>
                     {% endif%}
-                    {% if  i.image %}
+                      {% if  i.image %}
                   <a href="#!" class="link-muted"><i class="bi bi-images"></i></a>
                     {% endif %}
-                 </div>
-                <div class="d-flex align-items-center mb-3">
-                  <p class="mb-0">
-                    {{i.date}}
-                  </p>
                 </div>
                 <p class="mb-0 font-monospace">
                   {{i.description}}

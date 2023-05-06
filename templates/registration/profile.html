@@ -81,8 +81,7 @@
                   width="80">
                 <div class="mt-3">
                   <h4>{{customuser.username}}</h4>
-                  <p class="text-secondary mb-1">{{customuser.job}}</p>
-                  <p class="text-muted font-size-sm">{{customuser.address}}</p>
+                  <p class="text-secondary mb-1">{{customuser.job}</p>
                   <a class="btn btn-outline-primary" href="{% url 'chat:chat' customuser.username%}">message</a>
                   {% if request.user == customuser %}
                    <a class="btn btn-outline-primary " target="__blank"
@@ -129,26 +128,16 @@
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <h6 class="mb-0">age</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  {{customuser }}
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
                   <h6 class="mb-0">Address</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
                   {{customuser.address}}
-                  <a class="dropdown-item" href="{% url 'password_change'%}">Kalit so'zni almashtirish</a>
+
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-12">
-                  <button type="button" class="btn btn-info"data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">Info</button>
                   <button type="button" class="btn btn-success" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">tests</button>
                    <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">me test</button>
                 </div>
@@ -160,14 +149,7 @@
           </div>
            <div class="accordion accordion-flush" id="accordionFlushExample">
       <div class="accordion-item">
-        <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body"> this is not fount</div>
-        </div>
-      </div>
-    </div>
-           <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
-        <div id="flush-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionFlushExample" style="">
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body">
              <h3>Atended test</h3>
             {% for i in user.checktest_set.all %}
