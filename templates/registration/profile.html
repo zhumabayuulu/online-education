@@ -81,7 +81,6 @@
                   width="80">
                 <div class="mt-3">
                   <h4>{{customuser.username}}</h4>
-                  <p class="text-secondary mb-1">{{customuser.job}</p>
                   <a class="btn btn-outline-primary" href="{% url 'chat:chat' customuser.username%}">message</a>
                   {% if request.user == customuser %}
                    <a class="btn btn-outline-primary " target="__blank"
@@ -122,7 +121,7 @@
                   <h6 class="mb-0">Phone</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  {{customuser.phone}}
+                  {{customuser.phone_number}}
                 </div>
               </div>
               <hr>
