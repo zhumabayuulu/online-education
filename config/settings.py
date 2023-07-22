@@ -25,6 +25,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://msycamore.up.railway.app/"]
 
 # Application definition
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 'django.contrib.humanize',
     'crispy_forms',
     'crispy_bootstrap5',
+    "whitenoise",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
