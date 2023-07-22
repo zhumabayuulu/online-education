@@ -1,17 +1,9 @@
 {% extends "base.html" %}
-{% block title %}
-   @{{request.user}}
-
-{% endblock title %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/savedsadmin.css'%}">
   <body>
-
-    <!-- Example Code -->
-
-
-   <div>
+ <div>
        <h1>all saveds</h1>
         <div class="btn-group mt-5 " style="margin-right:0rem;" role="group" aria-label="Basic mixed styles example">
       <button type="button" class=" btn-sm btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">m'shop</button>
@@ -22,15 +14,10 @@
     </div>
    </div>
     <div class="accordion accordion-flush" id="accordionFlushExample">
-        <!-- nature card -->
-
-     <!-- nature end card -->
-
      <div class="accordion-item">
         <div id="perfect" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
           <div>
                 <div class=" row  row-cols-1 row-cols-md-3 " style="--bs-gutter-x: 0rem!important;">
-
   <div class="col">
 {% for i in savedss %}
     <div class=" card mt-3 mb-3" style="width: clamp(22rem, calc(3rem + 2vw), 22rem);">
@@ -51,8 +38,6 @@
                                         <span class="small"> <i class="bi bi-calendar-check"></i> {{ i.nature.date|date:'Y-m-d'}}</span>
                                     </a>
                                 </p>
-
-
                             </div>
                         </div>
                             <p class=" small mb-0 mt-0" style="color:#fff;">
@@ -90,16 +75,13 @@
                             </form>
                 </div>
       </div>
-
     </div>
 {% endfor %}
   </div>
-
 </div>
           </div>
         </div>
       </div>
-
       <div class="accordion-item">
       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
         <div>
@@ -127,7 +109,6 @@
 			<div class="col-5"><small class="tagg tag-redd "><i class="bi bi-calendar2-check"></i> {{ article.almanadmin.date|date:'Y-m-d' }}</small></div>
 			</div>
 			<h4 style="margin-bottom:0rem;">{{ article.almanadmin.title }}</h4>
-
 			<p style="margin-bottom: 0rem;">{{ article.almanadmin.body }}</p>
 		</div>
 		<div class="  card__footerr">
@@ -137,11 +118,9 @@
 					<h6 >
 						<a href="{% url 'users:profile' article.author.username  %}">@{{article.almanadmin.author}}</a></h6>
 				</div>
-
 				<div>
 					<form action="{% url 'like-postt'%}" method="POST" class='like-form' id='{{article.almanadmin.id}} '>
                               {% csrf_token %}
-
                                 <input type="hidden" name="post_id" value={{article.id}}>
                                     <button type="submit" class="btn btn-outline-success btn-sm like-btn{{article.almanadmin.id}}">
                                         {% if user not in article.liked.all %}
@@ -166,22 +145,17 @@
 			</div>
 		</div>
 	</div>
-
 </div>{% endfor %}
-
 </div>
         </div>
       </div>
     </div>
-
-
       <div class="accordion-item">
         <div id="test" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
           <div class="mt-4">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
                 {% for test in testsaveds %}
                 <div class="col">
-
                     <div class="card border-success mb-3" style="width: clamp(21rem, calc(3rem + 2vw), 22rem)">
                          <div class="card-header bg-transparent border-success">болум :{{test.test.category}}</div>
                 <div class="card-body text-success">
@@ -198,11 +172,9 @@
                               <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                             </svg>
                         </a>
-
                   {% endif%}
                      <form action="{% url 'okuu:like-test' %}" method="POST" class='like-form float-end' id='{{test.test.id}}'>
                                 {% csrf_token %}
-
                                 <input type="hidden" name="post_id" value={{test.test.id}}>
                                     <button type="submit" class="btn btn-outline-success btn-sm like-btn{{test.test.id}}">
                                         {% if user not in test.test.liked.all %}
@@ -212,25 +184,18 @@
                                         {% endif %}
                                     </button>
                                      <strong class="like-count{{test.test.id}} me-3">{{test.test.num_likes}}</strong>
-
                             </form>
                         </div>
                     </div>
-
                 </div>
                 {% endfor%}
-
             </div>
           </div>
         </div>
       </div>
-
-
-
     <div class="accordion-item">
       <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-
-        <div class="container mt-5"  style="width: clamp(22rem, calc(3rem + 2vw), 22rem);"> <!-- my-5 py-5-->
+        <div class="container mt-5"  style="width: clamp(22rem, calc(3rem + 2vw), 22rem);">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10">
           {% for i in learn %}
@@ -241,7 +206,6 @@
                 src="{{i.author.pic.url}}" alt="avatar" width="30"
                 height="30" />
                      <h6 class="fs-6 mb-1 badge bg-info me-1">#{{i.bloglearn.category}}</h6><h6 class="fs-6 mb-1 badge bg-success me-2">#{{i.bloglearn.object_category}}</h6>
-
                  </div>
                 <div class="d-flex align-items-center mb-3">
                   <p class="mb-0 me-4">
@@ -271,7 +235,6 @@
 
                             </form>
                     <a href="{% url 'okuu:learn_detail' i.id%}" class=" me-2"><i class="far fa-comment-dots me-1"></i>{{i.bloglearn.comments.count}}</a>
-
                   </div>
                   <a href="{% url 'okuu:learn_detail' i.id%}" class="btn btn-outline-primary btn-sm" data-mdb-ripple-color="dark"> жооп беруу</a>
 
@@ -280,8 +243,6 @@
                                   <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                                 </svg>
                              </a>
-
-
                 </div>
               </div>
           </div>{% endfor%}
@@ -290,12 +251,9 @@
   </div>
         </div>
       </div>
-
-
     <div class="accordion-item">
       <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
         <div>
-
             <link rel="stylesheet" href="{%static 'css/store.css'%}"}>
             <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;width: clamp(22rem, calc(3rem + 2vw), 22rem)">
                 <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
@@ -309,7 +267,6 @@
                                 <img height="200" class=" card-img-top" src="images/14pro2.jfif" alt="">
                                 {% endif %}
                             </a>
-
                             <div class="label-top shadow-sm">
                                 <a class="text-white" href="#">{{i.product.category}}</a>
                             </div>
@@ -356,24 +313,16 @@
                                         {% endif %}
                                     </button>
                                      <strong class="like-count{{i.product.id}} me-3">{{i.product.num_likes}}</strong>
-
                             </form>
 
                             </span>
                                 </div>
                             </div>
                             </div>
-
                     {% endfor %}
                 </div>
             </div>
         </div>
-
-
-
-
-
-    <!-- End Example Code -->
       </div>
       </div>
     </div>

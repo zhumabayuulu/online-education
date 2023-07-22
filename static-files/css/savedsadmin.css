@@ -1,0 +1,137 @@
+.containerrr {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*max-width: 1200px;*/
+    margin-block: 2rem;
+    gap: 2rem;
+}
+.topricht {
+  position: absolute;
+  top: 0px;
+  right: 0rem;
+  font-size: 15px;
+  color :#fff
+}
+  .topend {
+  position: absolute;
+  bottom: 0px;
+  top:8px;
+
+  right: 2rem;
+  font-size: 15px;
+}
+    .link-muted { color: #aaa; } .link-muted:hover { color: #1266f1; }
+
+    .alik{
+      margin-top: -1rem;
+      margin-left:0rem
+
+    }
+
+.topimg {
+  position: absolute;
+  top: 0px;
+  left: 0rem;
+  font-size: 15px;
+  color :#fff
+}
+.topedit {
+  position: absolute !important;
+  top: 0px !important;
+  right: 0rem !important;
+  font-size: 15px;
+  color :#fff
+}
+
+body {
+    font-family: "Quicksand", sans-serif;
+    display: grid;
+    place-items: center;
+
+}
+
+    .g-4{--bs-gutter-x: 0rem!important;}
+
+imgg {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.cardd {
+    display: flex;
+    flex-direction: column;
+    width: clamp(21rem, calc(0rem + 2vw), 22rem);
+    overflow: hidden;
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    background: #ECE9E6;
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+
+}
+
+
+
+.card__bodyy {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+
+.tagg {
+    align-self: flex-start;
+    padding: .25em .75em;
+    border-radius: 1em;
+    font-size: .75rem;
+}
+
+.tagg+.tagg {
+    margin-left: .5em;
+}
+
+.tag-bluee {
+    background: #56CCF2;
+    background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+    color: #fafafa;
+}
+
+.tag-brownn {
+    background: #D1913C;
+    background: linear-gradient(to bottom, #FFD194, #D1913C);
+    color: #fafafa;
+}
+
+.tag-redd {
+    background: #cb2d3e;
+    background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+    color: #fafafa;
+}
+
+.card__bodyy h4 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+.card__footerr {
+    display: flex;
+    padding: 1rem;
+    padding-top: 0rem !important;
+    margin-top: auto;
+}
+
+.userr {
+    display: flex;
+    gap: .5rem;
+}
+
+.user__imagee {
+    border-radius: 50%;
+
+}
+
+.user__infoo>small {
+    color: #666;
+}

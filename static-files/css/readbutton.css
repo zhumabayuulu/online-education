@@ -1,0 +1,12 @@
+[data-expandable] [data-expand-text] {
+    --line-height: 1.5;
+    --lines-to-show: 4;
+    box-sizing: border-box;
+    line-height: var(--line-height);
+    overflow: hidden;
+    height: calc(var(--line-height) * var(--lines-to-show) * 1em);
+}
+
+[data-expandable].expanded [data-expand-text] {
+    height: initial;
+}

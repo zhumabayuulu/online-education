@@ -22,7 +22,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -87,20 +87,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+import os,dj_database_url
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME'),
-        'HOST': env('DB_HOST'),
-        'PORT': '5432',
-        'USER': env('DB_USER'),
-        'PASSWORD': env('DB_PASSWORD')
-    }
+    'default': dj_database_url.parse(env("DATABASE_URL"))
+
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': env('DB_NAME'),
+        #'HOST': env('DB_HOST'),
+        #'PORT': '5432',
+        #'USER': env('DB_USER'),
+        #'PASSWORD': env('DB_PASSWORD')
 }
 
 # Password validation
