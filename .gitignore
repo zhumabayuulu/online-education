@@ -3,4 +3,5 @@
 media
 venv
 .venv
-# !**/migrations/__init__.py
+db.sqlite3
+# !**/migrations/__init__.pypython manage.py makemigrations
